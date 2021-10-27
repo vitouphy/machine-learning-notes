@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: ch1_markdown
+
+- file: ch2_tensorflow
+  sections:
+
+  - file: notebooks1
+    sections:
+    - file: notebooks2
+
