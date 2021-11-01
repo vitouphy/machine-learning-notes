@@ -183,6 +183,28 @@
    Residual Network (ResNet)
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mobilenet">
+   MobileNet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem">
+     Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution">
+     Solution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-use">
+     How to use
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -200,6 +222,7 @@
 <p>In this section, we will look into popular pre-trained models.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#residual-network-resnet">ResNet</a></p></li>
+<li><p><a class="reference external" href="#mobilenet">MobileNet</a></p></li>
 <li><p>VGG</p></li>
 <li><p>Inception</p></li>
 <li><p>Xception</p></li>
@@ -232,6 +255,77 @@
 </div>
 <p><strong>Solution:</strong> To tackle this, ResNet uses <strong>skip-connection</strong>, as shown in the figure below. What skip-connection essentially does is that instead of just outputting <span class="math notranslate nohighlight">\(f(x)\)</span>, we add the initial value <span class="math notranslate nohighlight">\(x\)</span> as well (denote by the curvy arrow). So, the output would be <span class="math notranslate nohighlight">\(f(x)+x\)</span>. During the backpropagation, if the gradient vanishes inside those rectangle blocks, it can skip them and go via the curvy arrow instead.</p>
 <p><strong>How to use:</strong> We can assume the figure (on the left) as one block. A block would have some convolution layers along with a skip-connection from the input of the block to its output. Then, we can just stack these blocks together to form one deep network (Figure on the right).</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="mobilenet">
+<h2>MobileNet<a class="headerlink" href="#mobilenet" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/1704.04861">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision
+Applications(Howard. et al, 2017)</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Main Idea: Use Depth-wise Separable Convolution to replace a regular convolution block because it behaves similarly but reduce the number of parameters drastically.</p>
+</div>
+<div class="section" id="problem">
+<h3>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h3>
+<p>Operation of convolution is quite intensive.</p>
+<p>Suppose we have an input image of size <span class="math notranslate nohighlight">\(D_x \times D_x \times M\)</span> and a convolution block with kernel of size <span class="math notranslate nohighlight">\(D_k \times D_k \times M\)</span>. First, the conv block will do element-wise multiplication with a segment on the input image. Then, we sum the value along all the channels into a single value. The kernel then slides by one block to the right (if stride is 1), and the whole process is repeated until all ceils are covered. <span class="math notranslate nohighlight">\(N\)</span> kernel is used to obtain <span class="math notranslate nohighlight">\(N\)</span> channel as output.</p>
+<div class="figure align-center" id="regular-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png"><img alt="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" src="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Regular Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#regular-conv" title="Permalink to this image">¶</a></p>
+</div>
+<p>Operations of a regular Conv block is roughly:</p>
+<ul class="simple">
+<li><p>One Conv Block’s Operations: <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M\)</span></p></li>
+<li><p>One Block’s Slide over the input: <span class="math notranslate nohighlight">\(D_x \cdot D_x\)</span></p></li>
+</ul>
+<p>Using <span class="math notranslate nohighlight">\(N\)</span> conv blocks, the total operation is:</p>
+<div class="math notranslate nohighlight">
+\[ 
+T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
+\]</div>
+</div>
+<div class="section" id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
+<p>One key challenge is that the conv multiplication is <strong>repeated for all <span class="math notranslate nohighlight">\(N\)</span> blocks</strong>. For example, one conv block is applied to the top-left corner of the input. The second block will re-compute everything again. The idea of Depth-wise separable convolution block is to not repeat that element-wise multiplication.</p>
+<p>Each of regular conv block does multiplication followed by additions. In depth-wise separable convolution, the process is splitted into two. One layer is for multiplication and another is for addition.</p>
+<ul class="simple">
+<li><p>Depthwise Convolution: This is similar to regular conv block except it does not perform additional across all channels. Hence, the operation is <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x\)</span>.</p></li>
+</ul>
+<div class="figure align-center" id="depthwise-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png"><img alt="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" src="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Depthwise Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#depthwise-conv" title="Permalink to this image">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>Pointwise Convolution: This is a <span class="math notranslate nohighlight">\(1 \times 1 \times M\)</span> kernel. <span class="math notranslate nohighlight">\(N\)</span> kernels are used to obtain <span class="math notranslate nohighlight">\(N\)</span> channels as output. The number of operations: <span class="math notranslate nohighlight">\(D_x \cdot D_x \cdot M \cdot N\)</span>.</p></li>
+</ul>
+<div class="figure align-center" id="pointwise-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png"><img alt="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" src="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Pointwise Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#pointwise-conv" title="Permalink to this image">¶</a></p>
+</div>
+<p>Total operations of Depth-wise Separable Convolution:</p>
+<div class="math notranslate nohighlight">
+\[
+(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)
+\]</div>
+<p>Let’s compare:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)}{D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N} =\frac{1}{N} + \frac{1}{D_k \cdot D_k}
+\]</div>
+<p>Here we can see that the depth-wise approach requires way less operations than the regular conv block.</p>
+</div>
+<div class="section" id="how-to-use">
+<h3>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h3>
+<p>Instead of using a regular convolution layer, we use two layers.</p>
+<div class="figure align-center" id="depthwise-sep-conv-vs">
+<a class="reference internal image-reference" href="_images/depth_conv_vs.png"><img alt="_images/depth_conv_vs.png" src="_images/depth_conv_vs.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Regular Conv vs. Depthwise Separable Conv
+(Source: Original research paper)</span><a class="headerlink" href="#depthwise-sep-conv-vs" title="Permalink to this image">¶</a></p>
+</div>
+</div>
 </div>
 </div>
 
