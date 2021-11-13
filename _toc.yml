@@ -1,15 +1,11 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
-root: transfer_learning
-# chapters:
-# - file: ch1_markdown
-
-# - file: ch2_tensorflow
-#   sections:
-
-#   - file: notebooks1
-#     sections:
-#     - file: notebooks2
+root: ch1_markdown
+chapters:
+- file: contents/transfer_learning/content
+  sections:
+  - file: contents/transfer_learning/efficient_net/content
+  - file: contents/transfer_learning/mobile_net/content
+  - file: contents/transfer_learning/res_net/content
+  
 
