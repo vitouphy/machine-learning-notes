@@ -250,7 +250,7 @@ Applications(Howard. et al, 2017)</a></p>
 <p>Suppose we have an input image of size <span class="math notranslate nohighlight">\(D_x \times D_x \times M\)</span> and a convolution block with kernel of size <span class="math notranslate nohighlight">\(D_k \times D_k \times M\)</span>. First, the conv block will do element-wise multiplication with a segment on the input image. Then, we sum the value along all the channels into a single value. The kernel then slides by one block to the right (if stride is 1), and the whole process is repeated until all ceils are covered. <span class="math notranslate nohighlight">\(N\)</span> kernel is used to obtain <span class="math notranslate nohighlight">\(N\)</span> channel as output.</p>
 <div class="figure align-center" id="regular-conv">
 <a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png"><img alt="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" src="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Regular Convolution
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Regular Convolution
 (Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#regular-conv" title="Permalink to this image">¶</a></p>
 </div>
 <p>Operations of a regular Conv block is roughly:</p>
@@ -273,7 +273,7 @@ T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
 </ul>
 <div class="figure align-center" id="depthwise-conv">
 <a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png"><img alt="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" src="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Depthwise Convolution
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Depthwise Convolution
 (Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#depthwise-conv" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
@@ -281,7 +281,7 @@ T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
 </ul>
 <div class="figure align-center" id="pointwise-conv">
 <a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png"><img alt="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" src="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Pointwise Convolution
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Pointwise Convolution
 (Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#pointwise-conv" title="Permalink to this image">¶</a></p>
 </div>
 <p>Total operations of Depth-wise Separable Convolution:</p>
@@ -301,7 +301,7 @@ T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
 <p>Instead of using a regular convolution layer, we use two layers.</p>
 <div class="figure align-center" id="depthwise-sep-conv-vs">
 <a class="reference internal image-reference" href="../../../_images/depth_conv_vs.png"><img alt="../../../_images/depth_conv_vs.png" src="../../../_images/depth_conv_vs.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Regular Conv vs. Depthwise Separable Conv
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Regular Conv vs. Depthwise Separable Conv
 (Source: Original research paper)</span><a class="headerlink" href="#depthwise-sep-conv-vs" title="Permalink to this image">¶</a></p>
 </div>
 </div>

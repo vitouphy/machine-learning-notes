@@ -278,6 +278,10 @@
 <li><p><strong>Mobile inverted bottleneck</strong> is the building block for this network. It utilizes the concept of skip-connection, a squeeze-and-excitement mechanism, with depth-wise separable convolution for small parameters.</p></li>
 <li><p>Neural architecture search (NAS) is used to find the optimal network for this model.</p></li>
 </ul>
+<div class="figure align-center" id="mb-block">
+<a class="reference internal image-reference" href="../../../_images/MB_block.png"><img alt="../../../_images/MB_block.png" src="../../../_images/MB_block.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="compound-scaling">
 <h3>Compound Scaling<a class="headerlink" href="#compound-scaling" title="Permalink to this headline">¶</a></h3>
@@ -294,7 +298,7 @@
 <p>The experiment shows that scaling one of the aspects will improve the performance. However, it quickly reaches its limit and starts to flatten out. <strong>Scaling on all three</strong> yields the best performance.</p>
 <div class="figure align-center" id="effect-compound-scaling">
 <a class="reference internal image-reference" href="../../../_images/effect_compound_scaling.png"><img alt="../../../_images/effect_compound_scaling.png" src="../../../_images/effect_compound_scaling.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
 </div>
 <p>This compound scaling effect is not only applicable to EfficientNet but also to other convolutional models, for instance, ResNet-50 and MobileNet-v2.</p>
 </div>
@@ -314,7 +318,7 @@
 <p>Let’s apply this to the EfficientNet. First, EfficientNet-B0 is obtained as the base model. Then, they set (<span class="math notranslate nohighlight">\(\phi = 1\)</span>) and use neural architecture search (NAS) to search for the <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span>  values that best optimize the performance for EfficientNet-B1. Once the three values are obtained, we only need to change <span class="math notranslate nohighlight">\(\phi\)</span> to <span class="math notranslate nohighlight">\(2, 3, ... N\)</span> to scale the model and get EfficientNet-B<span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="figure align-center" id="efficientnet-staging">
 <a class="reference internal image-reference" href="../../../_images/efficientnet_staging.png"><img alt="../../../_images/efficientnet_staging.png" src="../../../_images/efficientnet_staging.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let’s attempt to create EfficientNet-B7. From the paper, the NAS suggests <span class="math notranslate nohighlight">\(\alpha=1.2\)</span>, <span class="math notranslate nohighlight">\(\beta=1.1\)</span>, and <span class="math notranslate nohighlight">\(\gamma=1.1\)</span>. With <span class="math notranslate nohighlight">\(\phi=7\)</span>:</p>
 <ul class="simple">

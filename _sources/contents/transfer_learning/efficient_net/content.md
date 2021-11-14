@@ -24,6 +24,14 @@ For the second problem, obviously, if we can achieve better performance on small
 - **Mobile inverted bottleneck** is the building block for this network. It utilizes the concept of skip-connection, a squeeze-and-excitement mechanism, with depth-wise separable convolution for small parameters.
 - Neural architecture search (NAS) is used to find the optimal network for this model.
 
+```{figure} ./figures/MB_block.png
+---
+name: MB_block
+width: 300px
+align: center
+---
+Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2's paper)
+```
 
 ### Compound Scaling
 
