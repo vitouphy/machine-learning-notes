@@ -31,3 +31,9 @@ html:
   use_issues_button: true
   use_repository_button: true
   google_analytics_id: UA-66012739-4
+  
+sphinx:
+  config:
+    html_baseurl: 'https://vitouphy.github.io/machine-learning-notes/'
+  extra_extensions:
+    - sphinx_sitemap
