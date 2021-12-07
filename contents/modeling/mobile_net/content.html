@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EfficientNet &#8212; Machine Learning Notes</title>
+    <title>MobileNet &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,11 +51,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://vitouphy.github.io/machine-learning-notes/contents/transfer_learning/efficient_net/content.html" />
+    <link rel="canonical" href="https://vitouphy.github.io/machine-learning-notes/contents/modeling/mobile_net/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="MobileNet" href="../mobile_net/content.html" />
-    <link rel="prev" title="Large Pretrained Model" href="../content.html" />
+    <link rel="next" title="Residual Network" href="../res_net/content.html" />
+    <link rel="prev" title="EfficientNet" href="../efficient_net/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,14 +92,14 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../../ch1_markdown.html">
-   Markdown Files Hohooho
+   Introduction
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../content.html">
-   Large Pretrained Model
+   Modelings
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -107,19 +107,36 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../efficient_net/content.html">
      EfficientNet
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mobile_net/content.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      MobileNet
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../res_net/content.html">
      Residual Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../metrics/content.html">
+   Metrics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../metrics/angular_similarity/content.html">
+     Angular Similarity
     </a>
    </li>
   </ul>
@@ -165,7 +182,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/transfer_learning/efficient_net/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/mobile_net/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -185,7 +202,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/transfer_learning/efficient_net/content.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/modeling/mobile_net/content.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -217,26 +234,14 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#concept">
-   Concept
+  <a class="reference internal nav-link" href="#solution">
+   Solution
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#efficientnet-block">
-     EfficientNet Block
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compound-scaling">
-     Compound Scaling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#usage">
-     Usage
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use">
+   How to use
+  </a>
  </li>
 </ul>
 
@@ -249,84 +254,73 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="efficientnet">
-<h1>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://arxiv.org/abs/1905.11946">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks (Tan. et al, 2019)</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="mobilenet">
+<h1>MobileNet<a class="headerlink" href="#mobilenet" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/1704.04861">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision
+Applications(Howard. et al, 2017)</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>Scale depth, width, and resolution all together achieve better performance than scaling only one of them.</p></li>
-<li><p>It allows information to flow better. Bigger resolution requires more channels to capture more features, and it requires more layers to process them properly.</p></li>
-<li><p>Mobile Inverted Bottleneck is one of the building blocks.</p></li>
-<li><p>Use neural architecture search (NAS) to help with searching for the right parameters.</p></li>
-</ul>
+<p>Main Idea: Use Depth-wise Separable Convolution to replace a regular convolution block because it behaves similarly but reduce the number of parameters drastically.</p>
 </div>
 <div class="section" id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
-<p>There are two problems that this work is addressing:</p>
+<p>Operation of convolution is quite intensive.</p>
+<p>Suppose we have an input image of size <span class="math notranslate nohighlight">\(D_x \times D_x \times M\)</span> and a convolution block with kernel of size <span class="math notranslate nohighlight">\(D_k \times D_k \times M\)</span>. First, the conv block will do element-wise multiplication with a segment on the input image. Then, we sum the value along all the channels into a single value. The kernel then slides by one block to the right (if stride is 1), and the whole process is repeated until all ceils are covered. <span class="math notranslate nohighlight">\(N\)</span> kernel is used to obtain <span class="math notranslate nohighlight">\(N\)</span> channel as output.</p>
+<div class="figure align-center" id="regular-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png"><img alt="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" src="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Regular Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#regular-conv" title="Permalink to this image">¶</a></p>
+</div>
+<p>Operations of a regular Conv block is roughly:</p>
 <ul class="simple">
-<li><p>The effect of the number of layers, channels, and resolutions</p></li>
-<li><p>Finding the next small-scale model that performs well</p></li>
+<li><p>One Conv Block’s Operations: <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M\)</span></p></li>
+<li><p>One Block’s Slide over the input: <span class="math notranslate nohighlight">\(D_x \cdot D_x\)</span></p></li>
 </ul>
-<p>For the first problem, there are many papers that improve the model by scaling the number of layers, numbers of channels, or the resolution of the image. Some studies on one of the values. Others study on two together. However, there was not any that looked all three of them.</p>
-<p>For the second problem, obviously, if we can achieve better performance on smaller models, it would help with computation on low-power devices (e.g., mobiles) or on edge devices.</p>
+<p>Using <span class="math notranslate nohighlight">\(N\)</span> conv blocks, the total operation is:</p>
+<div class="math notranslate nohighlight">
+\[ 
+T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
+\]</div>
 </div>
-<div class="section" id="concept">
-<h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="efficientnet-block">
-<h3>EfficientNet Block<a class="headerlink" href="#efficientnet-block" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>One key challenge is that the conv multiplication is <strong>repeated for all <span class="math notranslate nohighlight">\(N\)</span> blocks</strong>. For example, one conv block is applied to the top-left corner of the input. The second block will re-compute everything again. The idea of Depth-wise separable convolution block is to not repeat that element-wise multiplication.</p>
+<p>Each of regular conv block does multiplication followed by additions. In depth-wise separable convolution, the process is splitted into two. One layer is for multiplication and another is for addition.</p>
 <ul class="simple">
-<li><p><strong>Mobile inverted bottleneck</strong> is the building block for this network. It utilizes the concept of skip-connection, a squeeze-and-excitement mechanism, with depth-wise separable convolution for small parameters.</p></li>
-<li><p>Neural architecture search (NAS) is used to find the optimal network for this model.</p></li>
+<li><p>Depthwise Convolution: This is similar to regular conv block except it does not perform additional across all channels. Hence, the operation is <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x\)</span>.</p></li>
 </ul>
-<div class="figure align-center" id="mb-block">
-<a class="reference internal image-reference" href="../../../_images/MB_block.png"><img alt="../../../_images/MB_block.png" src="../../../_images/MB_block.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="depthwise-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png"><img alt="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" src="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Depthwise Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#depthwise-conv" title="Permalink to this image">¶</a></p>
 </div>
-</div>
-<div class="section" id="compound-scaling">
-<h3>Compound Scaling<a class="headerlink" href="#compound-scaling" title="Permalink to this headline">¶</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It’s critical to balance all three aspects to pursue better performance.</p>
-</div>
-<p>This work focuses on three aspects:</p>
 <ul class="simple">
-<li><p>depth <span class="math notranslate nohighlight">\(d\)</span>: Number of layers.</p></li>
-<li><p>width <span class="math notranslate nohighlight">\(w\)</span>: Number of channels.</p></li>
-<li><p>resolution <span class="math notranslate nohighlight">\(r\)</span>: Image size (Refer to the image size of every layer).</p></li>
+<li><p>Pointwise Convolution: This is a <span class="math notranslate nohighlight">\(1 \times 1 \times M\)</span> kernel. <span class="math notranslate nohighlight">\(N\)</span> kernels are used to obtain <span class="math notranslate nohighlight">\(N\)</span> channels as output. The number of operations: <span class="math notranslate nohighlight">\(D_x \cdot D_x \cdot M \cdot N\)</span>.</p></li>
 </ul>
-<p>The experiment shows that scaling one of the aspects will improve the performance. However, it quickly reaches its limit and starts to flatten out. <strong>Scaling on all three</strong> yields the best performance.</p>
-<div class="figure align-center" id="effect-compound-scaling">
-<a class="reference internal image-reference" href="../../../_images/effect_compound_scaling.png"><img alt="../../../_images/effect_compound_scaling.png" src="../../../_images/effect_compound_scaling.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="pointwise-conv">
+<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png"><img alt="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" src="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Pointwise Convolution
+(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#pointwise-conv" title="Permalink to this image">¶</a></p>
 </div>
-<p>This compound scaling effect is not only applicable to EfficientNet but also to other convolutional models, for instance, ResNet-50 and MobileNet-v2.</p>
+<p>Total operations of Depth-wise Separable Convolution:</p>
+<div class="math notranslate nohighlight">
+\[
+(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)
+\]</div>
+<p>Let’s compare:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)}{D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N} =\frac{1}{N} + \frac{1}{D_k \cdot D_k}
+\]</div>
+<p>Here we can see that the depth-wise approach requires way less operations than the regular conv block.</p>
 </div>
-<div class="section" id="usage">
-<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
-<p>First, a base model is needed. Using that base model, we create another one by scaling up and set the width, depth, and resolution by multiplying with the following:</p>
-<ul class="simple">
-<li><p>depth: <span class="math notranslate nohighlight">\(d = \alpha ^ \phi\)</span></p></li>
-<li><p>width: <span class="math notranslate nohighlight">\(w = \beta ^ \phi\)</span></p></li>
-<li><p>resolution: <span class="math notranslate nohighlight">\(r = \gamma ^ \phi\)</span></p></li>
-</ul>
-<p>For simplicity, it is assumed that the three will be scaled by a certain rate. <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span> are constants. Only <span class="math notranslate nohighlight">\(\phi\)</span> is changed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The number of depths here does not refer to the total number of layers in the network. Instead, this coefficient refers to the frequency that a block (or a stage) should repeat itself, as shown in the table below.</p>
-</div>
-<p>Let’s apply this to the EfficientNet. First, EfficientNet-B0 is obtained as the base model. Then, they set (<span class="math notranslate nohighlight">\(\phi = 1\)</span>) and use neural architecture search (NAS) to search for the <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span>  values that best optimize the performance for EfficientNet-B1. Once the three values are obtained, we only need to change <span class="math notranslate nohighlight">\(\phi\)</span> to <span class="math notranslate nohighlight">\(2, 3, ... N\)</span> to scale the model and get EfficientNet-B<span class="math notranslate nohighlight">\(\phi\)</span>.</p>
-<div class="figure align-center" id="efficientnet-staging">
-<a class="reference internal image-reference" href="../../../_images/efficientnet_staging.png"><img alt="../../../_images/efficientnet_staging.png" src="../../../_images/efficientnet_staging.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
-</div>
-<p>Let’s attempt to create EfficientNet-B7. From the paper, the NAS suggests <span class="math notranslate nohighlight">\(\alpha=1.2\)</span>, <span class="math notranslate nohighlight">\(\beta=1.1\)</span>, and <span class="math notranslate nohighlight">\(\gamma=1.1\)</span>. With <span class="math notranslate nohighlight">\(\phi=7\)</span>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(d=(1.2)^7=3.58\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(w=r=(1.1)^7=1.95\)</span></p></li>
-</ul>
-<p>If we look at stage 4, the resolution should now be <span class="math notranslate nohighlight">\(109 \times 109\)</span>. The number of channels should be <span class="math notranslate nohighlight">\(78\)</span>, and the number of layers should be <span class="math notranslate nohighlight">\(7\)</span>. Viola, that’s how we obtain EfficientNet-B7.</p>
+<div class="section" id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>Instead of using a regular convolution layer, we use two layers.</p>
+<div class="figure align-center" id="depthwise-sep-conv-vs">
+<a class="reference internal image-reference" href="../../../_images/depth_conv_vs.png"><img alt="../../../_images/depth_conv_vs.png" src="../../../_images/depth_conv_vs.png" style="width: 480px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Regular Conv vs. Depthwise Separable Conv
+(Source: Original research paper)</span><a class="headerlink" href="#depthwise-sep-conv-vs" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -344,7 +338,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/transfer_learning/efficient_net"
+            path: "./contents/modeling/mobile_net"
         },
         predefinedOutput: true
     }
@@ -361,19 +355,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../content.html" title="previous page">
+        <a class="left-prev" href="../efficient_net/content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Large Pretrained Model</p>
+                <p class="prevnext-title">EfficientNet</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../mobile_net/content.html" title="next page">
+        <a class="right-next" href="../res_net/content.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">MobileNet</p>
+                <p class="prevnext-title">Residual Network</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
