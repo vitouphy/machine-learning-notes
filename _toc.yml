@@ -2,10 +2,14 @@
 format: jb-book
 root: ch1_markdown
 chapters:
-- file: contents/transfer_learning/content
+- file: contents/modeling/content
   sections:
-  - file: contents/transfer_learning/efficient_net/content
-  - file: contents/transfer_learning/mobile_net/content
-  - file: contents/transfer_learning/res_net/content
+  - file: contents/modeling/efficient_net/content
+  - file: contents/modeling/mobile_net/content
+  - file: contents/modeling/res_net/content
+
+- file: contents/metrics/content
+  sections:
+  - file: contents/metrics/angular_similarity/content
   
 
