@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Residual Network &#8212; Machine Learning Notes</title>
+    <title>NaN on Training &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,11 +51,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://vitouphy.github.io/machine-learning-notes/contents/modeling/res_net/content.html" />
+    <link rel="canonical" href="https://vitouphy.github.io/machine-learning-notes/contents/tips_and_tricks/nan_on_training/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Metrics" href="../../metrics/content.html" />
-    <link rel="prev" title="MobileNet" href="../mobile_net/content.html" />
+    <link rel="prev" title="Tips and Tricks" href="../content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -97,28 +96,28 @@
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../content.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modeling/content.html">
    Modelings
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../efficient_net/content.html">
+    <a class="reference internal" href="../../modeling/efficient_net/content.html">
      EfficientNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../mobile_net/content.html">
+    <a class="reference internal" href="../../modeling/mobile_net/content.html">
      MobileNet
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modeling/res_net/content.html">
      Residual Network
     </a>
    </li>
@@ -141,18 +140,18 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../tips_and_tricks/content.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content.html">
    Tips and Tricks
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../tips_and_tricks/nan_on_training/content.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      NaN on Training
     </a>
    </li>
@@ -199,7 +198,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/res_net/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/tips_and_tricks/nan_on_training/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -219,7 +218,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/modeling/res_net/content.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/tips_and_tricks/nan_on_training/content.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -240,6 +239,51 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem">
+   Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploding-gradient">
+   Exploding Gradient
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solutions">
+   Solutions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-gradient">
+     1 - Clip Gradient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weight-regularization">
+     2 - Weight Regularization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-your-model">
+     3 - Check Your Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -248,34 +292,50 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="residual-network">
-<h1>Residual Network<a class="headerlink" href="#residual-network" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://arxiv.org/abs/1512.03385">Deep Residual Learning for Image Recognition (He. et al, 2015)</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="nan-on-training">
+<h1>NaN on Training<a class="headerlink" href="#nan-on-training" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Main idea: To use skip-connection to train a deep neural network.</p>
+<p>Encounter NaN during training? Try:</p>
+<ul class="simple">
+<li><p>Clip gradient before updating the parameters.</p></li>
+<li><p>Add L1/L2 regularization.</p></li>
+<li><p>Adjust hyper-parameter (batch size, learning rate)</p></li>
+<li><p>Make sure all operations is performing as expected.</p></li>
+</ul>
 </div>
-<p><strong>Problem:</strong> Deep networks, prior to ResNet, tends to have a problem in training when the model gets too deep. They tend to suffer from vanishing gradients, which the training signal can not pass back properly during the backpropagation.</p>
-<div class="sphinx-bs container pb-4 docutils">
-<div class="row docutils">
-<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-body docutils">
-<p class="card-text"><img alt="image info" src="../../../_images/resnet.png" /></p>
+<div class="section" id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
+<p>You might have experience getting NaN as loss value during training. This implies that loss value is so big that it can not store in float anymore. This is also commonly related with <code class="docutils literal notranslate"><span class="pre">Exploding</span> <span class="pre">Gradient</span></code>.</p>
+</div>
+<div class="section" id="exploding-gradient">
+<h2>Exploding Gradient<a class="headerlink" href="#exploding-gradient" title="Permalink to this headline">¶</a></h2>
+<p>Gradient, informally, is a value informing which direction and how much we should update each parameter. Every parameter has its own gradient to update during each training step. Often, the gradient can get very large.</p>
+<p>For example, assuming the gradient is 1.05, learning rate is 1,0, its corresponding parameter <span class="math notranslate nohighlight">\(w=1\)</span>. At the training step 1,000, we will have <span class="math notranslate nohighlight">\(w=1.54*10^{21}\)</span>. That is huge. Large-value parameters, obviously, will result in large loss value. That is why NaN occurs during training.</p>
+</div>
+<div class="section" id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
+<p>There are some solutions available to handle this problem.</p>
+<div class="section" id="clip-gradient">
+<h3>1 - Clip Gradient<a class="headerlink" href="#clip-gradient" title="Permalink to this headline">¶</a></h3>
+<p>We can control the value of gradient by <span class="math notranslate nohighlight">\(min(\text{gradient}, y=10)\)</span>, where y is any positive real number. For the gradient of maximum 10, the learning rate, of course, should not be 1.0 but lower.</p>
+</div>
+<div class="section" id="weight-regularization">
+<h3>2 - Weight Regularization<a class="headerlink" href="#weight-regularization" title="Permalink to this headline">¶</a></h3>
+<p>Gradient clipping may help dealing with the NaN issue, but it is not guaranteed because it does not set any constraints on the size of each parameter. It can still be large. To decrease the likelihood of its occurence, weight regularization come into play. Essentially, weight regularization (e.g., L1 or L2) penalizes the model if its parameters get too big.</p>
+</div>
+<div class="section" id="check-your-model">
+<h3>3 - Check Your Model<a class="headerlink" href="#check-your-model" title="Permalink to this headline">¶</a></h3>
+<p>Running wrong operations, for example matrix multiplication instead of element-wise multiplication, may also be the cause. So, always check and make sure your implementaion is doing what it is supposed to be doing.</p>
 </div>
 </div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://machinelearningmastery.com/exploding-gradients-in-neural-networks/">A Gentle Introduction to Exploding Gradients in Neural Networks</a></p></li>
+<li><p><a class="reference external" href="https://sisyphus.gitbook.io/project/deep-learning-basics/deep-learning-debug/common-causes-of-nans-during-training">Common Causes of NANs During Training</a></p></li>
+</ul>
 </div>
-<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
-<div class="card w-100 shadow docutils">
-<div class="card-body docutils">
-<p class="card-text"><img alt="image info" src="../../../_images/resnet_stack.png" /></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p><strong>Solution:</strong> To tackle this, ResNet uses <strong>skip-connection</strong>, as shown in the figure below. What skip-connection essentially does is that instead of just outputting <span class="math notranslate nohighlight">\(f(x)\)</span>, we add the initial value <span class="math notranslate nohighlight">\(x\)</span> as well (denote by the curvy arrow). So, the output would be <span class="math notranslate nohighlight">\(f(x)+x\)</span>. During the backpropagation, if the gradient vanishes inside those rectangle blocks, it can skip them and go via the curvy arrow instead.</p>
-<p><strong>How to use:</strong> We can assume the figure (on the left) as one block. A block would have some convolution layers along with a skip-connection from the input of the block to its output. Then, we can just stack these blocks together to form one deep network (Figure on the right).</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -291,7 +351,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/modeling/res_net"
+            path: "./contents/tips_and_tricks/nan_on_training"
         },
         predefinedOutput: true
     }
@@ -308,23 +368,14 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../mobile_net/content.html" title="previous page">
+        <a class="left-prev" href="../content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">MobileNet</p>
+                <p class="prevnext-title">Tips and Tricks</p>
             </div>
         </a>
     </div>
-     <div id="next">
-        <a class="right-next" href="../../metrics/content.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Metrics</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         
