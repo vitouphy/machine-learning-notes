@@ -1,21 +1,25 @@
 # Table of contents
 format: jb-book
 root: ch1_markdown
-chapters:
-- file: contents/modeling/content
-  sections:
-  - file: contents/modeling/efficient_net/content
-  - file: contents/modeling/mobile_net/content
-  - file: contents/modeling/res_net/content
+parts:
+- caption: Concepts
+  chapters:
+  - file: contents/modeling/content
+    sections:
+    - file: contents/modeling/efficient_net/content
+    - file: contents/modeling/mobile_net/content
+    - file: contents/modeling/res_net/content
+  - file: contents/metrics/content
+    sections:
+    - file: contents/metrics/angular_similarity/content
+  - file: contents/tips_and_tricks/content
+    sections:
+    - file: contents/tips_and_tricks/nan_on_training/content
 
-- file: contents/metrics/content
-  sections:
-  - file: contents/metrics/angular_similarity/content
-
-- file: contents/tips_and_tricks/content
-  sections:
-  - file: contents/tips_and_tricks/nan_on_training/content
-  - file: contents/tips_and_tricks/load_data_in_tensorflow/content
-
-  
-
+- caption: Tools and Frameworks
+  chapters:
+  # - title: Tensorflow
+  - file: contents/tools_and_frameworks/tensorflow/content
+    sections:
+    - file: contents/tools_and_frameworks/tensorflow/load_data_in_tensorflow/content
+  - file: contents/tools_and_frameworks/sagemaker/content
