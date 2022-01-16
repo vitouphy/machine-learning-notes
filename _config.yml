@@ -35,6 +35,6 @@ html:
   
 sphinx:
   config:
-    html_baseurl: 'https://note.notmlprojects.com'
+    html_baseurl: 'https://vitouphy.github.io/'
   extra_extensions:
     - sphinx_sitemap

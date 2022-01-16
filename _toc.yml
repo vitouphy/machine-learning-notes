@@ -18,8 +18,8 @@ parts:
 
 - caption: Tools and Frameworks
   chapters:
-  # - title: Tensorflow
   - file: contents/tools_and_frameworks/tensorflow/content
     sections:
     - file: contents/tools_and_frameworks/tensorflow/load_data_in_tensorflow/content
+      title: Demystifying tf.Data
   - file: contents/tools_and_frameworks/sagemaker/content
