@@ -15,6 +15,7 @@ chapters:
 - file: contents/tips_and_tricks/content
   sections:
   - file: contents/tips_and_tricks/nan_on_training/content
+  - file: contents/tips_and_tricks/load_data_in_tensorflow/content
 
   
 
