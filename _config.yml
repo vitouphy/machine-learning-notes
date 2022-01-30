@@ -4,6 +4,7 @@
 title: Machine Learning Notes
 author: Vitou Phy
 logo: logo.png
+copyright: '2022'
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -35,6 +36,6 @@ html:
   
 sphinx:
   config:
-    html_baseurl: 'https://vitouphy.github.io/'
+    html_baseurl: 'https://note.notmlprojects.com/'
   extra_extensions:
     - sphinx_sitemap

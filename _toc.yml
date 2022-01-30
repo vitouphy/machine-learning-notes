@@ -1,6 +1,6 @@
 # Table of contents
 format: jb-book
-root: ch1_markdown
+root: index
 parts:
 - caption: Concepts
   chapters:
@@ -20,6 +20,5 @@ parts:
   chapters:
   - file: contents/tools_and_frameworks/tensorflow/content
     sections:
-    - file: contents/tools_and_frameworks/tensorflow/load_data_in_tensorflow/content
-      title: Demystifying tf.Data
+    - file: contents/tools_and_frameworks/tensorflow/demystifying_tf_data/content
   - file: contents/tools_and_frameworks/sagemaker/content
