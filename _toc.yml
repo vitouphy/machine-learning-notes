@@ -6,9 +6,10 @@ parts:
   chapters:
   - file: contents/modeling/content
     sections:
-    - file: contents/modeling/efficient_net/content
-    - file: contents/modeling/mobile_net/content
     - file: contents/modeling/res_net/content
+    - file: contents/modeling/mobile_net/content
+    - file: contents/modeling/efficient_net/content
+    - file: contents/modeling/vision_transformer/content 
   - file: contents/metrics/content
     sections:
     - file: contents/metrics/angular_similarity/content
