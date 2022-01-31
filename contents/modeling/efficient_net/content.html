@@ -54,8 +54,8 @@
     <link rel="canonical" href="https://note.notmlprojects.com/contents/modeling/efficient_net/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="MobileNet" href="../mobile_net/content.html" />
-    <link rel="prev" title="Modelings" href="../content.html" />
+    <link rel="next" title="Vision Transformer" href="../vision_transformer/content.html" />
+    <link rel="prev" title="MobileNet" href="../mobile_net/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -105,9 +105,9 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     EfficientNet
+   <li class="toctree-l2">
+    <a class="reference internal" href="../res_net/content.html">
+     Residual Network
     </a>
    </li>
    <li class="toctree-l2">
@@ -115,9 +115,14 @@
      MobileNet
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     EfficientNet
+    </a>
+   </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../res_net/content.html">
-     Residual Network
+    <a class="reference internal" href="../vision_transformer/content.html">
+     Vision Transformer
     </a>
    </li>
   </ul>
@@ -342,7 +347,7 @@
 </ul>
 <div class="figure align-center" id="mb-block">
 <a class="reference internal image-reference" href="../../../_images/MB_block.png"><img alt="../../../_images/MB_block.png" src="../../../_images/MB_block.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="compound-scaling">
@@ -360,7 +365,7 @@
 <p>The experiment shows that scaling one of the aspects will improve the performance. However, it quickly reaches its limit and starts to flatten out. <strong>Scaling on all three</strong> yields the best performance.</p>
 <div class="figure align-center" id="effect-compound-scaling">
 <a class="reference internal image-reference" href="../../../_images/effect_compound_scaling.png"><img alt="../../../_images/effect_compound_scaling.png" src="../../../_images/effect_compound_scaling.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
 </div>
 <p>This compound scaling effect is not only applicable to EfficientNet but also to other convolutional models, for instance, ResNet-50 and MobileNet-v2.</p>
 </div>
@@ -380,7 +385,7 @@
 <p>Let’s apply this to the EfficientNet. First, EfficientNet-B0 is obtained as the base model. Then, they set (<span class="math notranslate nohighlight">\(\phi = 1\)</span>) and use neural architecture search (NAS) to search for the <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span>  values that best optimize the performance for EfficientNet-B1. Once the three values are obtained, we only need to change <span class="math notranslate nohighlight">\(\phi\)</span> to <span class="math notranslate nohighlight">\(2, 3, ... N\)</span> to scale the model and get EfficientNet-B<span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 <div class="figure align-center" id="efficientnet-staging">
 <a class="reference internal image-reference" href="../../../_images/efficientnet_staging.png"><img alt="../../../_images/efficientnet_staging.png" src="../../../_images/efficientnet_staging.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let’s attempt to create EfficientNet-B7. From the paper, the NAS suggests <span class="math notranslate nohighlight">\(\alpha=1.2\)</span>, <span class="math notranslate nohighlight">\(\beta=1.1\)</span>, and <span class="math notranslate nohighlight">\(\gamma=1.1\)</span>. With <span class="math notranslate nohighlight">\(\phi=7\)</span>:</p>
 <ul class="simple">
@@ -422,19 +427,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../content.html" title="previous page">
+        <a class="left-prev" href="../mobile_net/content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Modelings</p>
+                <p class="prevnext-title">MobileNet</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../mobile_net/content.html" title="next page">
+        <a class="right-next" href="../vision_transformer/content.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">MobileNet</p>
+                <p class="prevnext-title">Vision Transformer</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

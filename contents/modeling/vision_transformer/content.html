@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Load Data in TF.Data &#8212; Machine Learning Notes</title>
+    <title>Vision Transformer &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="../../../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -49,9 +51,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/metrics/mean_avg_precision/content.html" />
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/modeling/vision_transformer/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Metrics" href="../../metrics/content.html" />
+    <link rel="prev" title="EfficientNet" href="../efficient_net/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -90,41 +94,41 @@
   Concepts
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../modeling/content.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content.html">
    Modelings
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/res_net/content.html">
+    <a class="reference internal" href="../res_net/content.html">
      Residual Network
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/mobile_net/content.html">
+    <a class="reference internal" href="../mobile_net/content.html">
      MobileNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/efficient_net/content.html">
+    <a class="reference internal" href="../efficient_net/content.html">
      EfficientNet
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/vision_transformer/content.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Vision Transformer
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../content.html">
+  <a class="reference internal" href="../../metrics/content.html">
    Metrics
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -134,7 +138,7 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../angular_similarity/content.html">
+    <a class="reference internal" href="../../metrics/angular_similarity/content.html">
      Angular Similarity
     </a>
    </li>
@@ -227,7 +231,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/metrics/mean_avg_precision/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/vision_transformer/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -247,7 +251,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/metrics/mean_avg_precision/content.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/modeling/vision_transformer/content.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -274,8 +278,35 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem">
-   Problem
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concept">
+   Concept
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformer-block">
+     Transformer Block
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Vision Transformer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strengths-and-limitations">
+   Strengths and Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
   </a>
  </li>
 </ul>
@@ -289,18 +320,67 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="load-data-in-tf-data">
-<h1>Load Data in TF.Data<a class="headerlink" href="#load-data-in-tf-data" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="vision-transformer">
+<h1>Vision Transformer<a class="headerlink" href="#vision-transformer" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/2010.11929">An Image Is Worth 16x16 Words: Transformers For Image Recognition At Scale (Dosovitskiy. et al, 2021)</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Benefits of TF-Data on the loading-preprocessing pipeline:</p>
 <ul class="simple">
-<li><p><strong>Small Dataset</strong>: If all your data can reside in memory, then TF-Data does not help much. Well, at least, it makes the code cleaner.</p></li>
-<li><p><strong>Large Dataset</strong>: Take advantage of multi-core CPU and speed up the pipeline.</p></li>
+<li><p>It’s like a regular Transformer but for computer vision.</p></li>
+<li><p>Swapping word embedding with image embedding.</p></li>
+<li><p>Split an image into N patches. Get embedding for each patch and feed to Transformer.</p></li>
 </ul>
 </div>
-<div class="section" id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Transform has become the go-to model in natural language processing ever since its initial appearance in 2017. However, there aren’t many works that studies its capability in computer vision yet.</p>
+<p>The goal of this work is to make use of the Transformer model in computer vision.</p>
+</div>
+<div class="section" id="concept">
+<h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="transformer-block">
+<h3>Transformer Block<a class="headerlink" href="#transformer-block" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We won’t go into depth on the main architecture of the Transformer.</p></li>
+<li><p>Briefly in machine translation, given a sequence of words, we get the vector representation (embedding) for each word and pass them to Transformer.</p></li>
+<li><p>Additional positional embedding is also added on top of the word embedding so that the model is aware of where that word is.</p></li>
+<li><p>Transformer takes in a sequence of vectors and computes each timestep (word) independently from the previous timestep, unlike recurrent neural network (RNN). This allows the model to be trainable in parallel across multiple machines.</p></li>
+<li><p>To be aware of the surrounding words, Transformer uses a self-attention mechanism. It may associate a word at timestep <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(n\)</span> words before and after it.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Vision Transformer<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For computer vision, it’s a little different since we are not working with a sequence of words. The only thing we need to change is its input.</p></li>
+<li><p>Hence, we split an image into <span class="math notranslate nohighlight">\(N\)</span>  patches of size <span class="math notranslate nohighlight">\(m \times m\)</span>. Then, we rearrange those <span class="math notranslate nohighlight">\(N\)</span> patches into an array (similar to an array of words).</p></li>
+<li><p>Reshape each patch and apply a linear transformation layer to get its corresponding embedding. Note that this layer will be shared across all timesteps.</p></li>
+<li><p>Add position embedding and feed them into Transformer.</p></li>
+</ul>
+<div class="figure align-center" id="vision-transformer-architecture">
+<a class="reference internal image-reference" href="../../../_images/vit_model.png"><img alt="../../../_images/vit_model.png" src="../../../_images/vit_model.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Vision Transformer Architecture</span><a class="headerlink" href="#vision-transformer-architecture" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="strengths-and-limitations">
+<h2>Strengths and Limitations<a class="headerlink" href="#strengths-and-limitations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Pretrained on a large dataset (at least 100M samples) yields better performance compared to ResNet architecture (non-Transformer SOTA in computer vision).</p></li>
+<li><p>Experimenting with a dataset of size 10M and 30M shows that the performance is somewhat limited.</p></li>
+<li><p>Such limitation is not only for vision but also in the NLP domain as well.</p></li>
+</ul>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/performance.png"><img alt="../../../_images/performance.png" src="../../../_images/performance.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Left Figure: Transfer to ImageNet. Right Figure: Few-shots on ImageNet. Both suggests that big dataset leads to performance improvement on Vision Transformer (ViT)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Now we can input an image into a Transformer by modifying the input to the model.</p></li>
+<li><p>Pretraining on big data of more than 100M shows the potential of Transformer.</p></li>
+<li><p>With lower data, ResNet is more promising in terms of accuracy.</p></li>
+</ul>
 </div>
 </div>
 
@@ -317,7 +397,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/metrics/mean_avg_precision"
+            path: "./contents/modeling/vision_transformer"
         },
         predefinedOutput: true
     }
@@ -333,6 +413,24 @@
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="../efficient_net/content.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">EfficientNet</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../../metrics/content.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Metrics</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
 
 </div>
         
