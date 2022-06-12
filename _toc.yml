@@ -32,3 +32,7 @@ parts:
     sections:
     - file: contents/tools_and_frameworks/tensorflow/demystifying_tf_data/content
   - file: contents/tools_and_frameworks/sagemaker/content
+
+- caption: Projects
+  chapters:
+  - file: contents/projects/speech_rehearsal/content
