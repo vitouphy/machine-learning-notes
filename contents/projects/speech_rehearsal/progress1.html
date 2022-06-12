@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWS Sagemaker &#8212; Machine Learning Notes</title>
+    <title>Progress 1: June 01 - 12 &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,11 +49,9 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/tools_and_frameworks/sagemaker/content.html" />
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/projects/speech_rehearsal/progress1.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Speech Rehearsal" href="../../projects/speech_rehearsal/content.html" />
-    <link rel="prev" title="Demystifying tf.Data" href="../tensorflow/demystifying_tf_data/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -182,9 +180,9 @@
   Tools and Frameworks
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../tensorflow/content.html">
+  <a class="reference internal" href="../../tools_and_frameworks/tensorflow/content.html">
    Tensorflow
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -194,14 +192,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../tensorflow/demystifying_tf_data/content.html">
+    <a class="reference internal" href="../../tools_and_frameworks/tensorflow/demystifying_tf_data/content.html">
      Demystifying tf.Data
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../tools_and_frameworks/sagemaker/content.html">
    AWS Sagemaker
   </a>
  </li>
@@ -213,7 +211,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../projects/speech_rehearsal/content.html">
+  <a class="reference internal" href="content.html">
    Speech Rehearsal
   </a>
  </li>
@@ -258,7 +256,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/tools_and_frameworks/sagemaker/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/projects/speech_rehearsal/progress1.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -283,6 +281,51 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-iteration">
+   Current Iteration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components">
+   Components
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feedback-design-on-correct-words">
+     1. Feedback design on correct words
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text-to-speech">
+     2. Text-to-Speech
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scoreboard">
+     3. Scoreboard
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dockerize-hosting">
+     4. Dockerize &amp; Hosting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitation-and-future-work">
+   Limitation and Future Work
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -291,8 +334,62 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="aws-sagemaker">
-<h1>AWS Sagemaker<a class="headerlink" href="#aws-sagemaker" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="progress-1-june-01-12">
+<h1>Progress 1: June 01 - 12<a class="headerlink" href="#progress-1-june-01-12" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="current-iteration">
+<h2>Current Iteration<a class="headerlink" href="#current-iteration" title="Permalink to this headline">¶</a></h2>
+<p>User first enter the text they want to practice. They record their voice. Hit analyze and the system will process everything and output which words are correctly or incorrectly pronounced.</p>
+<p><img alt="Current iteration" src="../../../_images/w1_states.png" /></p>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>This work is based on an iterative process. We quickly put things together to see how it would interact with its components. Then, we pick an aspect and improve on it. Sadly, we forgot capture the early iteration of this tool.</p>
+<div class="section" id="feedback-design-on-correct-words">
+<h3>1. Feedback design on correct words<a class="headerlink" href="#feedback-design-on-correct-words" title="Permalink to this headline">¶</a></h3>
+<p>The initial version does not provide proper feedback in a glance which word we get it right and which word we don’t. We have to go in manually.</p>
+<p>With proper color usage, we can easily know which one we need to improve on further.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>No Feedback</p></th>
+<th class="text-align:center head"><p>With Feedback</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><img alt="" src="../../../_images/w1_feedback_no.png" /></p></td>
+<td class="text-align:center"><p><img alt="" src="../../../_images/w1_feedback_yes.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="text-to-speech">
+<h3>2. Text-to-Speech<a class="headerlink" href="#text-to-speech" title="Permalink to this headline">¶</a></h3>
+<p>We should not expect every user to know how to read phonetics. It is not that straight-forward. Then, we decide to add TTS feature so that users can know the correct pronunciation of a word.</p>
+<p><img alt="Text to Speech" src="../../../_images/w1_tts.png" /></p>
+</div>
+<div class="section" id="scoreboard">
+<h3>3. Scoreboard<a class="headerlink" href="#scoreboard" title="Permalink to this headline">¶</a></h3>
+<p>We think that it would be useful if we can let users know their growths over time. Thus, we integrated a scoreboard by storing users score onto a database. In this case, we are using Azure CosmosDB.</p>
+<p>We don’t want users to go through some hectics process of signing up and login, so we just randomly generate user id for each user utilizing local storage on a web browser. As long as they are using that same browser, they can conveniently see their score.</p>
+<p><img alt="Scoreboard" src="../../../_images/w1_scoreboard.png" /></p>
+<p>FYI, we tried to add ChartJS for awesome visualization. But we encounter some compatibility issue between ChartJS with VueJS + NuxtJS 2. At the time of this experiment, there is ChartJS for VueJs 3 already.</p>
+</div>
+<div class="section" id="dockerize-hosting">
+<h3>4. Dockerize &amp; Hosting<a class="headerlink" href="#dockerize-hosting" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For ease of moving these components around later on, we put all of them into a separate container.</p></li>
+<li><p>For all these we deploy them on Azure. The reason is because we are submitting this project to an Azure Responsible AI Hackathon which requires using Azure services. Below is a figure demonstrating our architecture design for the current solution.</p></li>
+</ul>
+<p><img alt="Architecture" src="../../../_images/w1_architecture.png" /></p>
+</div>
+</div>
+<div class="section" id="limitation-and-future-work">
+<h2>Limitation and Future Work<a class="headerlink" href="#limitation-and-future-work" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Slow startup speech for HuggingFace Speech to Phoneme. The cold start on Huggingface takes around 53 seconds on average. It’s cumbersome process. And sometimes, it also fails to boot.</p></li>
+<li><p>Phoneme alignment algorithm when comparing between phoneme from text and from audio are somewhat limited. Frequently, a phoneme for word at index ends up placed at the next word. Hence, it is hard to user to know what’s going on.</p></li>
+<li><p>Speech-to-phoneme transcript is somewhat limited. We only train that using native English speakers only. Applying that to diverse group of people is not robust enough. Fortunately, we already have a new model ready, which we will integrate in the next update.</p></li>
+</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -308,7 +405,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/tools_and_frameworks/sagemaker"
+            path: "./contents/projects/speech_rehearsal"
         },
         predefinedOutput: true
     }
@@ -324,24 +421,6 @@
 
 <div class='prev-next-bottom'>
     
-    <div id="prev">
-        <a class="left-prev" href="../tensorflow/demystifying_tf_data/content.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Demystifying tf.Data</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="../../projects/speech_rehearsal/content.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Speech Rehearsal</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         

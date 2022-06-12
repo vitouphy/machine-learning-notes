@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWS Sagemaker &#8212; Machine Learning Notes</title>
+    <title>Speech Rehearsal &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,11 +49,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/tools_and_frameworks/sagemaker/content.html" />
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/projects/speech_rehearsal/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Speech Rehearsal" href="../../projects/speech_rehearsal/content.html" />
-    <link rel="prev" title="Demystifying tf.Data" href="../tensorflow/demystifying_tf_data/content.html" />
+    <link rel="prev" title="AWS Sagemaker" href="../../tools_and_frameworks/sagemaker/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -182,9 +181,9 @@
   Tools and Frameworks
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../tensorflow/content.html">
+  <a class="reference internal" href="../../tools_and_frameworks/tensorflow/content.html">
    Tensorflow
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -194,14 +193,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../tensorflow/demystifying_tf_data/content.html">
+    <a class="reference internal" href="../../tools_and_frameworks/tensorflow/demystifying_tf_data/content.html">
      Demystifying tf.Data
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../tools_and_frameworks/sagemaker/content.html">
    AWS Sagemaker
   </a>
  </li>
@@ -211,9 +210,9 @@
   Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../projects/speech_rehearsal/content.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Speech Rehearsal
   </a>
  </li>
@@ -258,7 +257,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/tools_and_frameworks/sagemaker/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/projects/speech_rehearsal/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -283,6 +282,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-objective">
+   Main Objective:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-block-for-this">
+   Building block for this:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#progresses">
+   Progresses:
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -291,8 +313,32 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="aws-sagemaker">
-<h1>AWS Sagemaker<a class="headerlink" href="#aws-sagemaker" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="speech-rehearsal">
+<h1>Speech Rehearsal<a class="headerlink" href="#speech-rehearsal" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-objective">
+<h2>Main Objective:<a class="headerlink" href="#main-objective" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Pronouncing a word incorrectly can make a speech difficult to follow. It can also make the audience miss your important idea.</p></li>
+<li><p>Hence, the goal of this tool is to help people rehearse for their presentation by providing feedback on their speech.</p></li>
+</ul>
+</div>
+<div class="section" id="building-block-for-this">
+<h2>Building block for this:<a class="headerlink" href="#building-block-for-this" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>ML-based model to transcript raw audio file into phonemes.</p></li>
+<li><p>A model to convert scripts (in text) into phonemes.</p></li>
+<li><p>An algorithm to align between phonemes from speech and from texts.</p></li>
+<li><p>A Text-to-speech model to give feedback to users on the correct pronunciation</p></li>
+<li><p>UI interface for users to use.</p></li>
+</ul>
+</div>
+<div class="section" id="progresses">
+<h2>Progresses:<a class="headerlink" href="#progresses" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="progress1.html"><span class="doc std std-doc">Progress #1: June 1 - June 12</span></a></p></li>
+<li><p>Progress #0: Building ML models, but I forgot to document them.</p></li>
+</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -308,7 +354,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/tools_and_frameworks/sagemaker"
+            path: "./contents/projects/speech_rehearsal"
         },
         predefinedOutput: true
     }
@@ -325,23 +371,14 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../tensorflow/demystifying_tf_data/content.html" title="previous page">
+        <a class="left-prev" href="../../tools_and_frameworks/sagemaker/content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Demystifying tf.Data</p>
+                <p class="prevnext-title">AWS Sagemaker</p>
             </div>
         </a>
     </div>
-     <div id="next">
-        <a class="right-next" href="../../projects/speech_rehearsal/content.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Speech Rehearsal</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         
