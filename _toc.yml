@@ -2,20 +2,29 @@
 format: jb-book
 root: index
 parts:
+
 - caption: Concepts
   chapters:
+  
   - file: contents/modeling/content
     sections:
     - file: contents/modeling/res_net/content
     - file: contents/modeling/mobile_net/content
     - file: contents/modeling/efficient_net/content
     - file: contents/modeling/vision_transformer/content 
+
   - file: contents/metrics/content
     sections:
     - file: contents/metrics/angular_similarity/content
+
   - file: contents/tips_and_tricks/content
     sections:
     - file: contents/tips_and_tricks/nan_on_training/content
+
+  - file: contents/applications/content
+    sections:
+    - file: contents/applications/wav2vec2_phoneme/content
+
 
 - caption: Tools and Frameworks
   chapters:
