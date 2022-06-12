@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MobileNet &#8212; Machine Learning Notes</title>
+    <title>Wav2Vec2 for Phoneme &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,11 +51,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/modeling/mobile_net/content.html" />
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/applications/wav2vec2_phoneme/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="EfficientNet" href="../efficient_net/content.html" />
-    <link rel="prev" title="Residual Network" href="../res_net/content.html" />
+    <link rel="next" title="Tensorflow" href="../../tools_and_frameworks/tensorflow/content.html" />
+    <link rel="prev" title="Applications" href="../content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -95,33 +95,33 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../content.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modeling/content.html">
    Modelings
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../res_net/content.html">
+    <a class="reference internal" href="../../modeling/res_net/content.html">
      Residual Network
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modeling/mobile_net/content.html">
      MobileNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../efficient_net/content.html">
+    <a class="reference internal" href="../../modeling/efficient_net/content.html">
      EfficientNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../vision_transformer/content.html">
+    <a class="reference internal" href="../../modeling/vision_transformer/content.html">
      Vision Transformer
     </a>
    </li>
@@ -161,18 +161,18 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../applications/content.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content.html">
    Applications
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../applications/wav2vec2_phoneme/content.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Wav2Vec2 for Phoneme
     </a>
    </li>
@@ -248,7 +248,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/mobile_net/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/applications/wav2vec2_phoneme/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -279,18 +279,57 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem">
-   Problem
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-of-wav2vec2">
+     Application of Wav2Vec2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#procedure">
+     Procedure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phoneme-recogntion">
+     Phoneme Recogntion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-and-setup">
+   Dataset and Setup
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
+  <a class="reference internal nav-link" href="#result">
+   Result
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zero-shot-performance">
+     Zero Shot Performance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#effect-of-pretraining">
+     Effect of Pretraining
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-use">
-   How to use
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -304,74 +343,73 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="mobilenet">
-<h1>MobileNet<a class="headerlink" href="#mobilenet" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://arxiv.org/abs/1704.04861">MobileNets: Efficient Convolutional Neural Networks for Mobile Vision
-Applications(Howard. et al, 2017)</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="wav2vec2-for-phoneme">
+<h1>Wav2Vec2 for Phoneme<a class="headerlink" href="#wav2vec2-for-phoneme" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Main Idea: Use Depth-wise Separable Convolution to replace a regular convolution block because it behaves similarly but reduce the number of parameters drastically.</p>
-</div>
-<div class="section" id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
-<p>Operation of convolution is quite intensive.</p>
-<p>Suppose we have an input image of size <span class="math notranslate nohighlight">\(D_x \times D_x \times M\)</span> and a convolution block with kernel of size <span class="math notranslate nohighlight">\(D_k \times D_k \times M\)</span>. First, the conv block will do element-wise multiplication with a segment on the input image. Then, we sum the value along all the channels into a single value. The kernel then slides by one block to the right (if stride is 1), and the whole process is repeated until all ceils are covered. <span class="math notranslate nohighlight">\(N\)</span> kernel is used to obtain <span class="math notranslate nohighlight">\(N\)</span> channel as output.</p>
-<div class="figure align-center" id="regular-conv">
-<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png"><img alt="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" src="https://miro.medium.com/max/1400/1*XloAmCh5bwE4j1G7yk5THw.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Regular Convolution
-(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#regular-conv" title="Permalink to this image">¶</a></p>
-</div>
-<p>Operations of a regular Conv block is roughly:</p>
 <ul class="simple">
-<li><p>One Conv Block’s Operations: <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M\)</span></p></li>
-<li><p>One Block’s Slide over the input: <span class="math notranslate nohighlight">\(D_x \cdot D_x\)</span></p></li>
+<li><p>Use Wav2Vec2 and train to recognize phonemes that are automatically generated.</p></li>
+<li><p>Perform quite well in both seen and unseen language.</p></li>
 </ul>
-<p>Using <span class="math notranslate nohighlight">\(N\)</span> conv blocks, the total operation is:</p>
-<div class="math notranslate nohighlight">
-\[ 
-T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
-\]</div>
 </div>
-<div class="section" id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
-<p>One key challenge is that the conv multiplication is <strong>repeated for all <span class="math notranslate nohighlight">\(N\)</span> blocks</strong>. For example, one conv block is applied to the top-left corner of the input. The second block will re-compute everything again. The idea of Depth-wise separable convolution block is to not repeat that element-wise multiplication.</p>
-<p>Each of regular conv block does multiplication followed by additions. In depth-wise separable convolution, the process is splitted into two. One layer is for multiplication and another is for addition.</p>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>This is a summary of the paper Simple and Effective Zero-shot Cross-lingual Phoneme Recognition (<a class="reference external" href="https://arxiv.org/abs/2109.11680">Arxiv</a>). The goal of this work is to apply the Wav2Vec2 model to recognize phonemes from raw audio.</p>
+<div class="section" id="application-of-wav2vec2">
+<h3>Application of Wav2Vec2<a class="headerlink" href="#application-of-wav2vec2" title="Permalink to this headline">¶</a></h3>
+<p>A Transformer-based model, called <a class="reference external" href="https://arxiv.org/pdf/2109.11680.pdf">Wav2Vec2</a> outperforms many of the existing work, particularly in low-resource language. This work explores how well this model behaves for the task of translating from audio to phonemes. Note that a phoneme (/ˈfoʊniːm/) is a unit of sound that can distinguish one word from another in a particular language <a class="reference external" href="https://en.wikipedia.org/wiki/Phoneme">(Wikipedia)</a>. It represents a proper way to pronounce a word.</p>
+</div>
+<div class="section" id="procedure">
+<h3>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h3>
+<p>Briefly, how Wav2Vec2 works is that it pretrains using only raw audio via self-supervision. No preprocessing or label data is needed.</p>
 <ul class="simple">
-<li><p>Depthwise Convolution: This is similar to regular conv block except it does not perform additional across all channels. Hence, the operation is <span class="math notranslate nohighlight">\(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x\)</span>.</p></li>
+<li><p>It maps every 25ms of audio strided by 20ms into a latent speech representation <span class="math notranslate nohighlight">\(z_t\)</span></p></li>
+<li><p>For each time step, <span class="math notranslate nohighlight">\(z_t\)</span> goes into the Transformer model and produces the contextual representation <span class="math notranslate nohighlight">\(c_t\)</span> (like regular Transformer, which also utilizes <span class="math notranslate nohighlight">\(z\)</span> at other time steps).</p></li>
+<li><p><span class="math notranslate nohighlight">\(z_t\)</span> is also discretized into <span class="math notranslate nohighlight">\(q_t\)</span>. In other words, It gets converted into a label integer.</p></li>
+<li><p>The model learns to determine which <span class="math notranslate nohighlight">\(q_i\)</span> is corresponded with <span class="math notranslate nohighlight">\(c_t\)</span>.</p></li>
 </ul>
-<div class="figure align-center" id="depthwise-conv">
-<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png"><img alt="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" src="https://miro.medium.com/max/1400/1*yG6z6ESzsRW-9q5F_neOsg.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Depthwise Convolution
-(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#depthwise-conv" title="Permalink to this image">¶</a></p>
 </div>
+<div class="section" id="phoneme-recogntion">
+<h3>Phoneme Recogntion<a class="headerlink" href="#phoneme-recogntion" title="Permalink to this headline">¶</a></h3>
+<p>After pretraining the Wav2Vec2, a <a class="reference external" href="https://en.wikipedia.org/wiki/Connectionist_temporal_classification">Connectionist Temporal Classification (CTC)</a> layer is added on top of the transformer model so that it can predict the phoneme for each timestep. Note that for this step, the model no longer learns to find the corresponding <span class="math notranslate nohighlight">\(q_i\)</span> and <span class="math notranslate nohighlight">\(c_t\)</span>. It focuses only on getting the right phoneme prediction.</p>
+</div>
+</div>
+<div class="section" id="dataset-and-setup">
+<h2>Dataset and Setup<a class="headerlink" href="#dataset-and-setup" title="Permalink to this headline">¶</a></h2>
+<p>The dataset used for this work is BABEL and CommonVoice. These datasets, however, do not contain any label data for phonemes. Instead, separate tools are used to automatically generate those labels, i.e., ESpeak or Phonetisaurus. Note that only one tool should be used for consistent labeling.</p>
+</div>
+<div class="section" id="result">
+<h2>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="zero-shot-performance">
+<h3>Zero Shot Performance<a class="headerlink" href="#zero-shot-performance" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/zero-shot.png"><img alt="../../../_images/zero-shot.png" src="../../../_images/zero-shot.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">For each column language, (for example <strong>de</strong>), each model is trained on all languages beside <strong>de</strong> and is tested on that language. The performance of this zero-shot is quite astounding.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="effect-of-pretraining">
+<h3>Effect of Pretraining<a class="headerlink" href="#effect-of-pretraining" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/pretrain.png"><img alt="../../../_images/pretrain.png" src="../../../_images/pretrain.png" style="width: 360px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Zero-Shot performance of different pre-trained models.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>XLSR-53 is a multilingual pretrained model (the one we have been discussing so far). w2v LV-60K is the same model architecture but it’s pretrained on English + language specified by each row. No pretrained refers to the original model that pretrained only using the English language. The score is phoneme error rate (PER), the lower the better.</p>
+<p>Having no pretrained achieves the worst performance. We simply can’t rely only on English speech and accent. It’s not enough. At least, pretrained on the target language. It shows substantial improvements over the non-pretrained one. As for XLSR-53, it even shows improvements further. <strong>Hence, why not just pretrained once on all languages, and just use that</strong>. Then, it makes downstream tasks a lot easier.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Pointwise Convolution: This is a <span class="math notranslate nohighlight">\(1 \times 1 \times M\)</span> kernel. <span class="math notranslate nohighlight">\(N\)</span> kernels are used to obtain <span class="math notranslate nohighlight">\(N\)</span> channels as output. The number of operations: <span class="math notranslate nohighlight">\(D_x \cdot D_x \cdot M \cdot N\)</span>.</p></li>
+<li><p>Wav2Vec2 is trained on CommonVoice and BABEL dataset using ESpeak / Phonetisaurus to create phoneme labels automatically.</p></li>
+<li><p>It can deliver substantially high performance on phoneme recognition tasks for both seen and unseen languages.</p></li>
+<li><p>Use a multilingual pretrained model if possible, particularly if the downstream tasks are on multiple unseen languages.</p></li>
 </ul>
-<div class="figure align-center" id="pointwise-conv">
-<a class="reference internal image-reference" href="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png"><img alt="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" src="https://miro.medium.com/max/1400/1*37sVdBZZ9VK50pcAklh8AQ.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Pointwise Convolution
-(Source: <a class="reference external" href="https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728">https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728</a>)</span><a class="headerlink" href="#pointwise-conv" title="Permalink to this image">¶</a></p>
 </div>
-<p>Total operations of Depth-wise Separable Convolution:</p>
-<div class="math notranslate nohighlight">
-\[
-(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)
-\]</div>
-<p>Let’s compare:</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{(D_k \cdot D_k \cdot M \cdot D_x \cdot D_x) + (D_x \cdot D_x \cdot M \cdot N)}{D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N} =\frac{1}{N} + \frac{1}{D_k \cdot D_k}
-\]</div>
-<p>Here we can see that the depth-wise approach requires way less operations than the regular conv block.</p>
-</div>
-<div class="section" id="how-to-use">
-<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
-<p>Instead of using a regular convolution layer, we use two layers.</p>
-<div class="figure align-center" id="depthwise-sep-conv-vs">
-<a class="reference internal image-reference" href="../../../_images/depth_conv_vs.png"><img alt="../../../_images/depth_conv_vs.png" src="../../../_images/depth_conv_vs.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Regular Conv vs. Depthwise Separable Conv
-(Source: Original research paper)</span><a class="headerlink" href="#depthwise-sep-conv-vs" title="Permalink to this image">¶</a></p>
-</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Xu, Qiantong, Alexei Baevski, and Michael Auli. “Simple and Effective Zero-shot Cross-lingual Phoneme Recognition.” arXiv e-prints (2021): arXiv-2109.</p></li>
+</ul>
 </div>
 </div>
 
@@ -388,7 +426,7 @@ T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/modeling/mobile_net"
+            path: "./contents/applications/wav2vec2_phoneme"
         },
         predefinedOutput: true
     }
@@ -405,19 +443,19 @@ T = D_k \cdot D_k \cdot M \cdot D_x \cdot D_x \cdot N
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../res_net/content.html" title="previous page">
+        <a class="left-prev" href="../content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Residual Network</p>
+                <p class="prevnext-title">Applications</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../efficient_net/content.html" title="next page">
+        <a class="right-next" href="../../tools_and_frameworks/tensorflow/content.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">EfficientNet</p>
+                <p class="prevnext-title">Tensorflow</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
