@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NaN on Training &#8212; Machine Learning Notes</title>
+    <title>Wav2Vec 2.0 &#8212; Machine Learning Notes</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,11 +51,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/tips_and_tricks/nan_on_training/content.html" />
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/modeling/wav2vec2/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Applications" href="../../applications/content.html" />
-    <link rel="prev" title="Tips and Tricks" href="../content.html" />
+    <link rel="next" title="Metrics" href="../../metrics/content.html" />
+    <link rel="prev" title="Vision Transformer" href="../vision_transformer/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -95,38 +95,38 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../modeling/content.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content.html">
    Modelings
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/res_net/content.html">
+    <a class="reference internal" href="../res_net/content.html">
      Residual Network
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/mobile_net/content.html">
+    <a class="reference internal" href="../mobile_net/content.html">
      MobileNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/efficient_net/content.html">
+    <a class="reference internal" href="../efficient_net/content.html">
      EfficientNet
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/vision_transformer/content.html">
+    <a class="reference internal" href="../vision_transformer/content.html">
      Vision Transformer
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modeling/wav2vec2/content.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Wav2Vec 2.0
     </a>
    </li>
@@ -149,18 +149,18 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../content.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tips_and_tricks/content.html">
    Tips and Tricks
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tips_and_tricks/nan_on_training/content.html">
      NaN on Training
     </a>
    </li>
@@ -265,7 +265,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/tips_and_tricks/nan_on_training/content.md"><button type="button"
+        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/wav2vec2/content.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -296,40 +296,40 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem">
-   Problem
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exploding-gradient">
-   Exploding Gradient
+  <a class="reference internal nav-link" href="#concept">
+   Concept
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solutions">
-   Solutions
+  <a class="reference internal nav-link" href="#dataset">
+   Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strengths-and-limitations">
+   Strengths and Limitations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clip-gradient">
-     1 - Clip Gradient
+    <a class="reference internal nav-link" href="#strengths">
+     Strengths
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#weight-regularization">
-     2 - Weight Regularization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#check-your-model">
-     3 - Check Your Model
+    <a class="reference internal nav-link" href="#limitations">
+     Limitations
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
   </a>
  </li>
 </ul>
@@ -343,49 +343,100 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="nan-on-training">
-<h1>NaN on Training<a class="headerlink" href="#nan-on-training" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="wav2vec-2-0">
+<h1>Wav2Vec 2.0<a class="headerlink" href="#wav2vec-2-0" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/2006.11477">Wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations (Baevski. et al, 2020)</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Encounter NaN during training? Try:</p>
 <ul class="simple">
-<li><p>Clip gradient before updating the parameters.</p></li>
-<li><p>Add L1/L2 regularization.</p></li>
-<li><p>Adjust hyper-parameter (batch size, learning rate)</p></li>
-<li><p>Make sure all operations is performing as expected.</p></li>
+<li><p>Based on the Transformer model, Wav2Vec 2.0 is trained using a self-supervised method to predict masked audio segments.</p></li>
+<li><p>Perform well in low-resource multilingual languages.</p></li>
 </ul>
 </div>
-<div class="section" id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
-<p>You might have experience getting NaN as loss value during training. This implies that loss value is so big that it can not store in float anymore. This is also commonly related with <code class="docutils literal notranslate"><span class="pre">Exploding</span> <span class="pre">Gradient</span></code>.</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>There are two main motivations for this paper:</p>
+<p><strong>1. Can there be a better way to train the wave-to-vec model without any label data?</strong></p>
+<p>If we compare this to training text-based language model (LM), working with text is much easier to do self-supervised learning. Commonly, a token is masked and the model is used to guess what that masked word is, e.g., the BERT model. Alternatively, given <span class="math notranslate nohighlight">\(n\)</span> tokens, the model is trained to predict the next one. However, in audio, things are slightly more complicated, specifically, it’s no longer about predicting a token but predicting a sequence of the audio segment.</p>
+<p><strong>2. Can the model benefit from training on multilingual data?</strong></p>
+<p>If we have the same model architecture but are trained on two different types of data (monolingual and multilingual), which one is more beneficial for the downstream task?</p>
 </div>
-<div class="section" id="exploding-gradient">
-<h2>Exploding Gradient<a class="headerlink" href="#exploding-gradient" title="Permalink to this headline">¶</a></h2>
-<p>Gradient, informally, is a value informing which direction and how much we should update each parameter. Every parameter has its own gradient to update during each training step. Often, the gradient can get very large.</p>
-<p>For example, assuming the gradient is 1.05, learning rate is 1,0, its corresponding parameter <span class="math notranslate nohighlight">\(w=1\)</span>. At the training step 1,000, we will have <span class="math notranslate nohighlight">\(w=1.54*10^{21}\)</span>. That is huge. Large-value parameters, obviously, will result in large loss value. That is why NaN occurs during training.</p>
+<div class="section" id="concept">
+<h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
+<p>The core of Wav2Vec2 is based on the standard Transformer model. It’s one of the main building blocks of this architecture. The main difference is its input and the loss function.</p>
+<div class="figure align-center" id="wav2vec-2-0-transformer-architecture">
+<a class="reference internal image-reference" href="../../../_images/model.png"><img alt="../../../_images/model.png" src="../../../_images/model.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Wav2Vec 2.0 Transformer Architecture</span><a class="headerlink" href="#wav2vec-2-0-transformer-architecture" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="solutions">
-<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
-<p>There are some solutions available to handle this problem.</p>
-<div class="section" id="clip-gradient">
-<h3>1 - Clip Gradient<a class="headerlink" href="#clip-gradient" title="Permalink to this headline">¶</a></h3>
-<p>We can control the value of gradient by <span class="math notranslate nohighlight">\(min(\text{gradient}, y=10)\)</span>, where y is any positive real number. For the gradient of maximum 10, the learning rate, of course, should not be 1.0 but lower.</p>
-</div>
-<div class="section" id="weight-regularization">
-<h3>2 - Weight Regularization<a class="headerlink" href="#weight-regularization" title="Permalink to this headline">¶</a></h3>
-<p>Gradient clipping may help dealing with the NaN issue, but it is not guaranteed because it does not set any constraints on the size of each parameter. It can still be large. To decrease the likelihood of its occurence, weight regularization come into play. Essentially, weight regularization (e.g., L1 or L2) penalizes the model if its parameters get too big.</p>
-</div>
-<div class="section" id="check-your-model">
-<h3>3 - Check Your Model<a class="headerlink" href="#check-your-model" title="Permalink to this headline">¶</a></h3>
-<p>Running wrong operations, for example matrix multiplication instead of element-wise multiplication, may also be the cause. So, always check and make sure your implementaion is doing what it is supposed to be doing.</p>
-</div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://machinelearningmastery.com/exploding-gradients-in-neural-networks/">A Gentle Introduction to Exploding Gradients in Neural Networks</a></p></li>
-<li><p><a class="reference external" href="https://sisyphus.gitbook.io/project/deep-learning-basics/deep-learning-debug/common-causes-of-nans-during-training">Common Causes of NANs During Training</a></p></li>
+<li><p><strong>Preprocessing:</strong> This model takes in raw audio. No audio preprocessor (or Fourier transform) is required.</p></li>
+<li><p><strong>Latent Representation:</strong> Raw audio <span class="math notranslate nohighlight">\(X\)</span> is split into chunks (with some overlappings) and fed into CNN <span class="math notranslate nohighlight">\(Z\)</span> to extract its latent representation. For instance at chunk <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(x_i \rightarrow z_i\)</span>.</p></li>
+<li><p><strong>Contextual Representation:</strong> This latent representation <span class="math notranslate nohighlight">\(z_i\)</span> along with <span class="math notranslate nohighlight">\(z_j\)</span> at other time steps are fed into the standard Transformer to obtain contextual representation <span class="math notranslate nohighlight">\(c_i\)</span>. What this means is that the vector <span class="math notranslate nohighlight">\(c_i\)</span> captures and is aware of nearby audio chunks.</p></li>
+<li><p><strong>Product Quantization:</strong> The same <span class="math notranslate nohighlight">\(z_i\)</span> is also get discretized into <span class="math notranslate nohighlight">\(l_i\)</span>. In other words, we try to put a label onto <span class="math notranslate nohighlight">\(z_i\)</span>.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(q\)</span> has two modules where each element has a vocab size of 320.</p></li>
+<li><p>This corresponds to 102.4K combinations of code words.</p></li>
+<li><p>This discretize module uses <strong>Gumbel-Softmax</strong> to allow the flow of differentiation because the regular <strong>argmax</strong> function is indifferentiable.</p></li>
+<li><p>With the discretized <span class="math notranslate nohighlight">\(l_i\)</span>, it is projected back into a vector and concatenated (since we are having two modules for each <span class="math notranslate nohighlight">\(l\)</span>) into a vector <span class="math notranslate nohighlight">\(q_i\)</span> of the same size as <span class="math notranslate nohighlight">\(c_i\)</span>.</p></li>
 </ul>
+</li>
+<li><p><strong>Masked Prediction:</strong> Remember that the model does not see <span class="math notranslate nohighlight">\(z_i\)</span> because <span class="math notranslate nohighlight">\(z_i\)</span> is masked and instead obtains <span class="math notranslate nohighlight">\(c_i\)</span> from its surrounding context? Now model needs to pick which <span class="math notranslate nohighlight">\(q_i\)</span> is the most relevant to the embedding <span class="math notranslate nohighlight">\(c_i\)</span>?</p>
+<ul>
+<li><p>The comparison between <span class="math notranslate nohighlight">\(c_i\)</span> and <span class="math notranslate nohighlight">\(q_i\)</span> is done using a simple cosine similarity function.</p></li>
+</ul>
+</li>
+</ul>
+<div class="figure align-center" id="contrastive-loss-function">
+<a class="reference internal image-reference" href="../../../_images/contrastive_loss.png"><img alt="../../../_images/contrastive_loss.png" src="../../../_images/contrastive_loss.png" style="width: 500px;" /></a>
+</div>
+<ul class="simple">
+<li><p><strong>Diverse Discretize</strong>: There can be cases where the model does not utilize all the vocabulary in the <span class="math notranslate nohighlight">\(Q\)</span> module. It might just pick a subset of <span class="math notranslate nohighlight">\(Q\)</span> again and again. To combat this problem, they include a diversity loss function. Essentially, it penalizes when the model is very certain of a particular code label. The higher the entropy, the bigger loss value is.</p></li>
+</ul>
+<div class="figure align-center" id="diversity-loss-function">
+<a class="reference internal image-reference" href="../../../_images/diversity_func.png"><img alt="../../../_images/diversity_func.png" src="../../../_images/diversity_func.png" style="width: 500px;" /></a>
+</div>
+<ul class="simple">
+<li><p><strong>Extra 💬</strong>: If the model ends up comparing vector <span class="math notranslate nohighlight">\(c_i\)</span> with another vector <span class="math notranslate nohighlight">\(q_i\)</span>, why need to go through all those quantization processes? Why don’t we just use <span class="math notranslate nohighlight">\(z_i\)</span> instead?</p>
+<ul>
+<li><p>If we compare with <span class="math notranslate nohighlight">\(z_i\)</span>, that would mean we want the model to output exactly the same as the latent representation module (<span class="math notranslate nohighlight">\(Z\)</span>). This would just turn this Transformer module into an identity function.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<p>The model was experimented with and trained on Librispeech (960 hours of audio) or LibriVox (53.2K hours of audio). Both datasets are not merged. Based on <a class="reference external" href="https://ai.facebook.com/blog/wav2vec-20-learning-the-structure-of-speech-from-raw-audio/">this blog post</a>, it seems that the publicly released version of Wav2Vec 2.0 is pre-trained on <strong>LibriVox</strong> dataset.</p>
+</div>
+<div class="section" id="strengths-and-limitations">
+<h2>Strengths and Limitations<a class="headerlink" href="#strengths-and-limitations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="strengths">
+<h3>Strengths<a class="headerlink" href="#strengths" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This self-supervised learning approach is successful. Fine-tuning this on the benchmark dataset (ASR) outperforms the existing models.</p></li>
+<li><p>The fine-tuning does not require that much data. This enables the downstream task on low-resource language to be efficient. It can go down to 10 hours or even 1 hour.</p>
+<ul>
+<li><p>💬 We try to fine-tune this on the Khmer language recognition task using only around 3 hours. And the performance is mindblowing, given using low resource language.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The limitation of this model is not properly discussed in the paper.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We can now apply self-supervised learning to raw audio data.</p></li>
+<li><p>Fine-tuned Wav2Vec 2.0 performs well on both high and low-resource languages (down to 10 hours). It can also go down to 1 hour. Obviously, it wouldn’t be that good compared to having more data, but it’s feasible.</p></li>
+</ul>
+<br/>
+<hr/>
+<br/>
+<p>💬 denotes <strong>opinion</strong> and is not from the paper.</p>
 </div>
 </div>
 
@@ -402,7 +453,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/tips_and_tricks/nan_on_training"
+            path: "./contents/modeling/wav2vec2"
         },
         predefinedOutput: true
     }
@@ -419,19 +470,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../content.html" title="previous page">
+        <a class="left-prev" href="../vision_transformer/content.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Tips and Tricks</p>
+                <p class="prevnext-title">Vision Transformer</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../../applications/content.html" title="next page">
+        <a class="right-next" href="../../metrics/content.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Applications</p>
+                <p class="prevnext-title">Metrics</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

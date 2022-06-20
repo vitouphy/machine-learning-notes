@@ -125,6 +125,11 @@
      Vision Transformer
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modeling/wav2vec2/content.html">
+     Wav2Vec 2.0
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -396,14 +401,14 @@
 <h3>Zero Shot Performance<a class="headerlink" href="#zero-shot-performance" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../../../_images/zero-shot.png"><img alt="../../../_images/zero-shot.png" src="../../../_images/zero-shot.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">For each column language, (for example <strong>de</strong>), each model is trained on all languages beside <strong>de</strong> and is tested on that language. The performance of this zero-shot is quite astounding.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">For each column language, (for example <strong>de</strong>), each model is trained on all languages beside <strong>de</strong> and is tested on that language. The performance of this zero-shot is quite astounding.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="effect-of-pretraining">
 <h3>Effect of Pretraining<a class="headerlink" href="#effect-of-pretraining" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../../_images/pretrain.png"><img alt="../../../_images/pretrain.png" src="../../../_images/pretrain.png" style="width: 360px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Zero-Shot performance of different pre-trained models.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Zero-Shot performance of different pre-trained models.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>XLSR-53 is a multilingual pretrained model (the one we have been discussing so far). w2v LV-60K is the same model architecture but it’s pretrained on English + language specified by each row. No pretrained refers to the original model that pretrained only using the English language. The score is phoneme error rate (PER), the lower the better.</p>
 <p>Having no pretrained achieves the worst performance. We simply can’t rely only on English speech and accent. It’s not enough. At least, pretrained on the target language. It shows substantial improvements over the non-pretrained one. As for XLSR-53, it even shows improvements further. <strong>Hence, why not just pretrained once on all languages, and just use that</strong>. Then, it makes downstream tasks a lot easier.</p>
