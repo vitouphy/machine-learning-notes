@@ -12,6 +12,7 @@ parts:
     - file: contents/modeling/mobile_net/content
     - file: contents/modeling/efficient_net/content
     - file: contents/modeling/vision_transformer/content 
+    - file: contents/modeling/wav2vec2/content
 
   - file: contents/metrics/content
     sections:
