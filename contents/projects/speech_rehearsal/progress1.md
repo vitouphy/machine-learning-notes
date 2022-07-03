@@ -1,4 +1,5 @@
-# Progress 1: June 01 - 12
+# Progress 1: Fundamental
+### Date: June 01 - 12
 
 ## Current Iteration
 

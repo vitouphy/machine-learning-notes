@@ -17,6 +17,6 @@
 
 ## Progresses:
 
-- [Progress #2: June 13 - July 2](./progress2.md)
-- [Progress #1: June 1 - June 12](./progress1.md)
+- [Progress #2: Security & Hosting on AWS (June 13 - July 2)](./progress2.md)
+- [Progress #1: Fundamental (June 1 - June 12)](./progress1.md)
 - Progress #0: Building ML models, but I forgot to document them.

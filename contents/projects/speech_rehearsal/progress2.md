@@ -1,4 +1,5 @@
-# Progress 2: Security & Hosting on AWS (June 13 - July 02)
+# Progress 2: Security & Hosting on AWS 
+### Date: June 13 - July 02
 
 ## Main Objective
 
