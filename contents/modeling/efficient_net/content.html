@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>EfficientNet &#8212; Machine Learning Notes</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,49 +20,73 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://note.notmlprojects.com/contents/modeling/efficient_net/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Vision Transformer" href="../vision_transformer/content.html" />
     <link rel="prev" title="MobileNet" href="../mobile_net/content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SN82SMEHZ2"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-SN82SMEHZ2');
+                </script>
+
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -69,9 +95,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,7 +116,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Concepts
  </span>
@@ -184,7 +211,7 @@
   </ul>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tools and Frameworks
  </span>
@@ -213,7 +240,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Projects
  </span>
@@ -227,12 +254,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -240,61 +272,117 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/contents/modeling/efficient_net/content.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/contents/modeling/efficient_net/content.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#problem">
    Problem
@@ -324,17 +412,62 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>EfficientNet</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem">
+   Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concept">
+   Concept
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#efficientnet-block">
+     EfficientNet Block
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compound-scaling">
+     Compound Scaling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage">
+     Usage
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="efficientnet">
-<h1>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="efficientnet">
+<h1>EfficientNet<a class="headerlink" href="#efficientnet" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://arxiv.org/abs/1905.11946">EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks (Tan. et al, 2019)</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -345,8 +478,8 @@
 <li><p>Use neural architecture search (NAS) to help with searching for the right parameters.</p></li>
 </ul>
 </div>
-<div class="section" id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
 <p>There are two problems that this work is addressing:</p>
 <ul class="simple">
 <li><p>The effect of the number of layers, channels, and resolutions</p></li>
@@ -354,22 +487,24 @@
 </ul>
 <p>For the first problem, there are many papers that improve the model by scaling the number of layers, numbers of channels, or the resolution of the image. Some studies on one of the values. Others study on two together. However, there was not any that looked all three of them.</p>
 <p>For the second problem, obviously, if we can achieve better performance on smaller models, it would help with computation on low-power devices (e.g., mobiles) or on edge devices.</p>
-</div>
-<div class="section" id="concept">
-<h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="efficientnet-block">
-<h3>EfficientNet Block<a class="headerlink" href="#efficientnet-block" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="concept">
+<h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">#</a></h2>
+<section id="efficientnet-block">
+<h3>EfficientNet Block<a class="headerlink" href="#efficientnet-block" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>Mobile inverted bottleneck</strong> is the building block for this network. It utilizes the concept of skip-connection, a squeeze-and-excitement mechanism, with depth-wise separable convolution for small parameters.</p></li>
 <li><p>Neural architecture search (NAS) is used to find the optimal network for this model.</p></li>
 </ul>
-<div class="figure align-center" id="mb-block">
+<figure class="align-center" id="mb-block">
 <a class="reference internal image-reference" href="../../../_images/MB_block.png"><img alt="../../../_images/MB_block.png" src="../../../_images/MB_block.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="compound-scaling">
-<h3>Compound Scaling<a class="headerlink" href="#compound-scaling" title="Permalink to this headline">¶</a></h3>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Mobile Inverted Bottleneck. The first Conv1x1 (from input) is for scaling up and the second is for compressing. (Figure from MobileNet-v2’s paper)</span><a class="headerlink" href="#mb-block" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="compound-scaling">
+<h3>Compound Scaling<a class="headerlink" href="#compound-scaling" title="Permalink to this headline">#</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It’s critical to balance all three aspects to pursue better performance.</p>
@@ -381,14 +516,16 @@
 <li><p>resolution <span class="math notranslate nohighlight">\(r\)</span>: Image size (Refer to the image size of every layer).</p></li>
 </ul>
 <p>The experiment shows that scaling one of the aspects will improve the performance. However, it quickly reaches its limit and starts to flatten out. <strong>Scaling on all three</strong> yields the best performance.</p>
-<div class="figure align-center" id="effect-compound-scaling">
+<figure class="align-center" id="effect-compound-scaling">
 <a class="reference internal image-reference" href="../../../_images/effect_compound_scaling.png"><img alt="../../../_images/effect_compound_scaling.png" src="../../../_images/effect_compound_scaling.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Scaling Up EfficientNet-B0</span><a class="headerlink" href="#effect-compound-scaling" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>This compound scaling effect is not only applicable to EfficientNet but also to other convolutional models, for instance, ResNet-50 and MobileNet-v2.</p>
-</div>
-<div class="section" id="usage">
-<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">#</a></h3>
 <p>First, a base model is needed. Using that base model, we create another one by scaling up and set the width, depth, and resolution by multiplying with the following:</p>
 <ul class="simple">
 <li><p>depth: <span class="math notranslate nohighlight">\(d = \alpha ^ \phi\)</span></p></li>
@@ -401,19 +538,21 @@
 <p>The number of depths here does not refer to the total number of layers in the network. Instead, this coefficient refers to the frequency that a block (or a stage) should repeat itself, as shown in the table below.</p>
 </div>
 <p>Let’s apply this to the EfficientNet. First, EfficientNet-B0 is obtained as the base model. Then, they set (<span class="math notranslate nohighlight">\(\phi = 1\)</span>) and use neural architecture search (NAS) to search for the <span class="math notranslate nohighlight">\(\alpha, \beta, \gamma\)</span>  values that best optimize the performance for EfficientNet-B1. Once the three values are obtained, we only need to change <span class="math notranslate nohighlight">\(\phi\)</span> to <span class="math notranslate nohighlight">\(2, 3, ... N\)</span> to scale the model and get EfficientNet-B<span class="math notranslate nohighlight">\(\phi\)</span>.</p>
-<div class="figure align-center" id="efficientnet-staging">
+<figure class="align-center" id="efficientnet-staging">
 <a class="reference internal image-reference" href="../../../_images/efficientnet_staging.png"><img alt="../../../_images/efficientnet_staging.png" src="../../../_images/efficientnet_staging.png" style="width: 480px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Detail on EfficientNet-B0</span><a class="headerlink" href="#efficientnet-staging" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Let’s attempt to create EfficientNet-B7. From the paper, the NAS suggests <span class="math notranslate nohighlight">\(\alpha=1.2\)</span>, <span class="math notranslate nohighlight">\(\beta=1.1\)</span>, and <span class="math notranslate nohighlight">\(\gamma=1.1\)</span>. With <span class="math notranslate nohighlight">\(\phi=7\)</span>:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(d=(1.2)^7=3.58\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(w=r=(1.1)^7=1.95\)</span></p></li>
 </ul>
 <p>If we look at stage 4, the resolution should now be <span class="math notranslate nohighlight">\(109 \times 109\)</span>. The number of channels should be <span class="math notranslate nohighlight">\(78\)</span>, and the number of layers should be <span class="math notranslate nohighlight">\(7\)</span>. Viola, that’s how we obtain EfficientNet-B7.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -437,61 +576,48 @@
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../mobile_net/content.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">MobileNet</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../mobile_net/content.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MobileNet</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../vision_transformer/content.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vision Transformer</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="../vision_transformer/content.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Vision Transformer</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Vitou Phy<br/>
-        
-            &copy; Copyright 2022.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vitou Phy<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SN82SMEHZ2"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('config', 'G-SN82SMEHZ2');
-                </script>
 
   </body>
 </html>
