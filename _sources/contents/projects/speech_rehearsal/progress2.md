@@ -1,4 +1,5 @@
-# Progress 2: Security & Hosting on AWS (June 13 - July 02)
+# Progress 2: Security & Hosting on AWS 
+### Date: June 13 - July 02
 
 ## Main Objective
 
@@ -29,7 +30,7 @@ Note that this takes that long because of HuggingFace loading time. Actually, we
 
 Anyway, we replace that circle with a progress bar and block other functionality like editing the text or analyze button. In this case, users can read the text or listen to their own voices while waiting.
 
-![Untitled](figures/w2_progress_bar.png)
+![Progress Bar](figures/w2_progress_bar.png)
 
 ### **Threshold and Normalization**
 

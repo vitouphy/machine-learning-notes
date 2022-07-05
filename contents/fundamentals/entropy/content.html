@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tensorflow &#8212; Machine Learning Notes</title>
+    <title>Informal Explanation on Entropy &#8212; Machine Learning Notes</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,11 +50,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://note.notmlprojects.com/contents/tools_and_frameworks/tensorflow/content.html" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://note.notmlprojects.com/contents/fundamentals/entropy/content.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Demystifying tf.Data" href="demystifying_tf_data/content.html" />
-    <link rel="prev" title="Wav2Vec2 for Phoneme" href="../../applications/wav2vec2_phoneme/content.html" />
+    <link rel="next" title="Modelings" href="../../modeling/content.html" />
+    <link rel="prev" title="Fundamentals" href="../content.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -119,19 +121,19 @@ const thebe_selector_output = ".output, .cell_output"
   Concepts
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../fundamentals/content.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../content.html">
    Fundamentals
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../fundamentals/entropy/content.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Entropy
     </a>
    </li>
@@ -231,26 +233,26 @@ const thebe_selector_output = ".output, .cell_output"
   Tools and Frameworks
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tools_and_frameworks/tensorflow/content.html">
    Tensorflow
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="demystifying_tf_data/content.html">
+    <a class="reference internal" href="../../tools_and_frameworks/tensorflow/demystifying_tf_data/content.html">
      Demystifying tf.Data
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../sagemaker/content.html">
+  <a class="reference internal" href="../../tools_and_frameworks/sagemaker/content.html">
    AWS Sagemaker
   </a>
  </li>
@@ -339,7 +341,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../../_sources/contents/tools_and_frameworks/tensorflow/content.md"
+        <a href="../../../_sources/contents/fundamentals/entropy/content.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -376,23 +378,90 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-information-i-x">
+   Shannon Information I(x)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropy">
+   Entropy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tensorflow</h1>
+                <h1>Informal Explanation on Entropy</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-information-i-x">
+   Shannon Information I(x)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropy">
+   Entropy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -400,10 +469,85 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="tensorflow">
-<h1>Tensorflow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">#</a></h1>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="informal-explanation-on-entropy">
+<h1>Informal Explanation on Entropy<a class="headerlink" href="#informal-explanation-on-entropy" title="Permalink to this headline">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Entropy is an average of information or uncertainty of random variable.</p></li>
+<li><p>The number of bits tells us how uncertain an event is, as if we select one choice out of <span class="math notranslate nohighlight">\(2^\text{bit}\)</span>.</p></li>
+</ul>
 </div>
+<p>The term <code class="docutils literal notranslate"><span class="pre">entropy</span></code> has been used across different fields such as physics, information theory, and cyber security. In information theory, I often find many articles using definitions as follows:</p>
+<ul class="simple">
+<li><p>Entropy refers degree of randomness or</p></li>
+<li><p>Entropy is the <em>expected</em> number of bits of information contained in each message, taken over all possibilities for the transmitted message.</p></li>
+<li><p>Entropy is an average level of “information”, “surprise”, or “uncertainty” of a variable’s possible outcomes.</p></li>
+</ul>
+<p>Having so various forms of explanation are somewhat tricky to understand, and it’s even more so if we mix them together. For this article, we pick one definition and run with it. And that is seeing entropy in terms of measurement for uncertainty.</p>
+<div class="math notranslate nohighlight">
+\[
+H(X) = E[I(X)] = -\sum log(P(x)) \cdot P(x)
+\]</div>
+<p>Essentially, entropy is an average (expected value) of information or uncertainty of a random variable. Let’s break this down and focus on the information I(x).</p>
+<section id="shannon-information-i-x">
+<h2>Shannon Information I(x)<a class="headerlink" href="#shannon-information-i-x" title="Permalink to this headline">#</a></h2>
+<p>Informally, let’s say we want to have a function to measure uncertainty. We notice that generally high probability is the same as low uncertainty, and low probability is the same as high uncertainty. When you are 99% sure that it’s gonna rain, that’s super-low uncertainty.</p>
+<div class="math notranslate nohighlight">
+\[
+ I(x) = -log_2(x)
+\]</div>
+<p>Fortunately, these log operations give us just that. It’s able to convert a probability of 1.0 to 0 uncertainty and a probability of 0 to a high number of uncertainty. In other words, we can think of this information I(X) as a simple non-linear transformation function to measure uncertainty.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{\#outcome} = 2^{\text{\#bit}} 
+\]</div>
+<p>What else can we think of this uncertainty? Suppose an image can be of 4 animals. For a case where an ML model says that an image has 50% being a cat. This is equivalent to log2(0.5) = <strong>1 bit</strong> of uncertainty. What this means is that although we have 4 possible animals, the chance of an image being a cat is the same as the chance of flipping a coin and getting a head. Notice that <strong>one bit of uncertainty</strong> is compared with <strong>flipping one coin</strong>. Alternatively, we roughly have 2^(1 bit)=2 possible choices to choose from.</p>
+<figure class="align-center" id="cat-dog">
+<a class="reference internal image-reference" href="../../../_images/cat_dog.png"><img alt="../../../_images/cat_dog.png" src="../../../_images/cat_dog.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Image generated by OpenAI’s Dall-E with prompt “painting of a dog that looks like a cat”</span><a class="headerlink" href="#cat-dog" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Similarly, suppose that image now has 1.25% of being a cat, that would be log2(0.125) = <strong>3 bits</strong> of uncertainty. This suggests that this image is as uncertain as tossing <strong>a coin 3 three times</strong> and getting all heads, or simply 2^(3 bits)=8 possible choices to pick from. So, we can say that this <strong>bit unit</strong> <strong>tells us the odds of an event as if we are comparing the chance of a coin toss</strong>.</p>
+</section>
+<section id="entropy">
+<h2>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">#</a></h2>
+<p>Let’s move on to entropy. Entropy is an average of uncertainty across all events of a random variable. Informally, it tells how uncertain a random variable is. Is it as random tossing a coin, two coins, or n coins?</p>
+<p>Let’s denote the animals earlier as random variable X that can have 4 possible outcomes such as cat, dog, mouse, and bird. Suppose we make a prediction on an image and the model says that the chance of being any animal is equally 0.25. In this case, the average of uncertainty (entropy) is 2 bits, meaning the odd is the same as tossing the coin two times and getting all heads. Or we have 2^2 choices to choose from.</p>
+<p>You’d be like, duh! Obvious much. But let’s see the next example.</p>
+<p>Instead, let’s say a cat has a chance of 90%, a dog has 4%, and a mouse and bird have 3% each. We would have the following.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+H(X) &amp;= E[I(X)] \\
+&amp;= -\sum log(P(x)) \cdot P(x) \\
+&amp;= -\log_2(0.9)*0.9
+-\log_2(0.04)*0.04
+-2*\log_2(0.03)*0.03 \\
+&amp;=0.14+0.19+0.30 \\
+&amp;=0.63
+\end{align*}
+\end{split}\]</div>
+<p>The average uncertainty (entropy) of variable X is 0.63 bit, which is less than just tossing a coin (1 bit). Normally, we would have 4 possible outcomes (4 types of animals) to choose from. But if we apply the rule of this bit, we would have 2^0.63 = 1.54 outcomes. This implies that because we have a 90% chance of getting a cat, we may not deal with 4 choices anymore. It’s as if we now have 1.54 choices to choose from. And that’s what the entropy is for, which is to tell us how uncertain a random variable is. Is it as random as tossing 1 coin or 3 coins?</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>To sum things up, there are many ways to explain entropy. In this article, we try to explain entropy that it’s an average uncertainty of a random variable. We know that the events themselves have a different chance of occurring. Entropy is just there to tell us how random it is as if we compare it to an odd of tossing some coins.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://brilliant.org/wiki/entropy-information-theory/">https://brilliant.org/wiki/entropy-information-theory/</a></p></li>
+<li><p><a class="reference external" href="https://www.techtarget.com/whatis/definition/entropy">https://www.techtarget.com/whatis/definition/entropy</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">https://en.wikipedia.org/wiki/Entropy_(information_theory)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Information_content">https://en.wikipedia.org/wiki/Information_content</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/the-intuition-behind-shannons-entropy-e74820fe9800">https://towardsdatascience.com/the-intuition-behind-shannons-entropy-e74820fe9800</a></p></li>
+<li><p><a class="reference external" href="https://machinelearningmastery.com/what-is-information-entropy/">https://machinelearningmastery.com/what-is-information-entropy/</a></p></li>
+<li><p><a class="reference external" href="https://www.khanacademy.org/computing/computer-science/informationtheory/moderninfotheory/v/information-entropy">https://www.khanacademy.org/computing/computer-science/informationtheory/moderninfotheory/v/information-entropy</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=v68zYyaEmEA&amp;t=330s&amp;ab_channel=3Blue1Brown">https://www.youtube.com/watch?v=v68zYyaEmEA&amp;t=330s&amp;ab_channel=3Blue1Brown</a></p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -419,7 +563,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./contents/tools_and_frameworks/tensorflow"
+            path: "./contents/fundamentals/entropy"
         },
         predefinedOutput: true
     }
@@ -433,17 +577,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../applications/wav2vec2_phoneme/content.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../content.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Wav2Vec2 for Phoneme</p>
+            <p class="prev-next-title">Fundamentals</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="demystifying_tf_data/content.html" title="next page">
+    <a class='right-next' id="next-link" href="../../modeling/content.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Demystifying tf.Data</p>
+        <p class="prev-next-title">Modelings</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
