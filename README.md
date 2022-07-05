@@ -2,7 +2,7 @@
 
 This is just a collections of notes on various topics of machine learning. 
 
-You can visit [https://vitouphy.github.io/](https://vitouphy.github.io/) to view the content.\
+You can visit [here](https://note.notmlprojects.com) to view the content.
 
 To view locally, you can build this notebook by:
 
