@@ -6,6 +6,11 @@ parts:
 - caption: Concepts
   chapters:
   
+  - file: contents/fundamentals/content
+    sections: 
+    - title: Entropy 
+      file: contents/fundamentals/entropy/content
+      
   - file: contents/modeling/content
     sections:
     - file: contents/modeling/res_net/content
