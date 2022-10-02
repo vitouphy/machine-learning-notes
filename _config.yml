@@ -36,6 +36,6 @@ html:
 
 sphinx:
   config:
-    html_baseurl: 'https://note.notmlprojects.com/'
+    html_baseurl: 'https://demystifyml.co'
   extra_extensions:
     - sphinx_sitemap
