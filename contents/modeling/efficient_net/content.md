@@ -9,6 +9,9 @@
 
 ```
 
+## Introduction
+EfficientNet is a convolutional neural network model that aims to improve the performance of smaller scale models for use in resource-constrained environments such as on low-power devices or edge devices. The model utilizes advanced techniques such as neural architecture search and specialized building blocks to optimize its performance, and focuses on scaling various aspects of the model to achieve the best results. In this article, we will explore the concepts behind EfficientNet and how it is designed to improve the performance of smaller scale models.
+
 ## Problem
 
 There are two problems that this work is addressing:
@@ -87,3 +90,6 @@ Let's attempt to create EfficientNet-B7. From the paper, the NAS suggests $\alph
 - $w=r=(1.1)^7=1.95$
 
 If we look at stage 4, the resolution should now be $109 \times 109$. The number of channels should be $78$, and the number of layers should be $7$. Viola, that's how we obtain EfficientNet-B7.
+
+## Conclusion
+In conclusion, EfficientNet is a convolutional neural network model that is designed to improve performance on smaller models for use on low-power devices or edge devices. The model uses neural architecture search and the Mobile Inverted Bottleneck building block to optimize its performance, and focuses on scaling three aspects - depth, width, and resolution - to achieve the best results. The model can be easily scaled by changing the frequency at which blocks or stages repeat, starting with the base model and increasing the scaling factor to obtain higher models. Overall, EfficientNet is a useful tool for improving the performance of smaller scale models for use in resource-constrained environments.
